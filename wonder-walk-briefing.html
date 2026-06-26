@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swarovski – Wonder Walk · Team Briefing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sky: #d6e8f5;
+  --crystal: #b8d8f0;
+  --ink: #0f1923;
+  --gold: #c9a96e;
+  --gold-light: #e8d5b0;
+  --white: #f8fbff;
+  --mist: #e8f2fa;
+  --soft: #7a9ab5;
+  --mid: #4a6a80;
+  --success: #3d9970;
+  --card-bg: rgba(255,255,255,0.72);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--sky);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem 4rem;
+  position: relative;
+  background:
+    radial-gradient(ellipse 65% 50% at 75% 20%, rgba(255,255,255,.55) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 15% 80%, rgba(170,215,248,.55) 0%, transparent 55%),
+    var(--sky);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--mist));
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-size: .65rem;
+  letter-spacing: .35em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--soft);
+  margin-bottom: 1.4rem;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(3.2rem, 9vw, 6.5rem);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: .35em;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: .06em;
+  display: block;
+  font-size: .6em;
+  color: var(--mid);
+}
+.hero-tagline {
+  font-size: clamp(.85rem, 2vw, 1rem);
+  color: var(--mid);
+  font-weight: 300;
+  letter-spacing: .04em;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto 2.8rem;
+}
+.hero-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  font-size: .62rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--soft);
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  transition: color .2s;
+}
+.hero-scroll:hover { color: var(--gold); }
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: pulse-line 2s ease-in-out infinite;
+}
+@keyframes pulse-line { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+/* ── ACTIVITY STRIP ── */
+.activity-strip {
+  background: var(--ink);
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.activity-chip {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  color: rgba(255,255,255,.6);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.chip-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+.chip-sep { color: rgba(255,255,255,.15); font-size: 1.2rem; }
+
+/* ── MAIN CONTENT ── */
+.content {
+  background: var(--mist);
+  padding: 4rem 2rem;
+}
+.content-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* Section label */
+.section-label {
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+/* ── MISSION CARD ── */
+.mission-card {
+  background: var(--ink);
+  border-radius: 4px;
+  padding: 2.5rem 2.8rem;
+  position: relative;
+  overflow: hidden;
+}
+.mission-card::before {
+  content: '✦';
+  position: absolute;
+  right: 2rem; top: 1.8rem;
+  font-size: 4rem;
+  color: rgba(201,169,110,.08);
+  font-family: sans-serif;
+  line-height: 1;
+}
+.mission-card .section-label { color: var(--gold); }
+.mission-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: .08em;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+.mission-card p {
+  font-size: .88rem;
+  line-height: 1.85;
+  color: rgba(248,251,255,.65);
+  max-width: 600px;
+}
+
+/* ── STEPS ── */
+.steps-section h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  letter-spacing: .07em;
+  color: var(--ink);
+  margin-bottom: .3rem;
+}
+.steps-intro {
+  font-size: .83rem;
+  color: var(--mid);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: rgba(15,25,35,.08);
+  border: 1px solid rgba(15,25,35,.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.step-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  padding: 1.8rem 1.5rem;
+  position: relative;
+  transition: background .2s;
+}
+.step-card:hover { background: rgba(255,255,255,.9); }
+.step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: .8rem;
+}
+.step-card h4 {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: .5rem;
+}
+.step-card p {
+  font-size: .8rem;
+  line-height: 1.65;
+  color: var(--mid);
+}
+.step-icon {
+  position: absolute;
+  top: 1.6rem; right: 1.4rem;
+  font-size: 1.3rem;
+  opacity: .2;
+}
+
+/* ── ZONES PREVIEW ── */
+.zones-section h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  letter-spacing: .07em;
+  color: var(--ink);
+  margin-bottom: .3rem;
+}
+.zones-intro {
+  font-size: .83rem;
+  color: var(--mid);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+.zones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(15,25,35,.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.zone-row {
+  background: var(--card-bg);
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.5rem;
+  transition: background .2s;
+  cursor: default;
+}
+.zone-row:hover { background: rgba(255,255,255,.95); }
+.zone-num-badge {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,169,110,.35);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.zone-info h4 {
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--ink);
+  margin-bottom: .15rem;
+}
+.zone-info p {
+  font-size: .75rem;
+  color: var(--soft);
+  line-height: 1.4;
+}
+.zone-tag {
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--mid);
+  background: rgba(15,25,35,.06);
+  padding: .3rem .7rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+/* ── STORYTELLING CUES ── */
+.cues-section h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.6rem;
+  letter-spacing: .07em;
+  color: var(--ink);
+  margin-bottom: .3rem;
+}
+.cues-intro {
+  font-size: .83rem;
+  color: var(--mid);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+.cues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.cue-card {
+  background: var(--white);
+  border: 1px solid rgba(15,25,35,.07);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+  padding: 1.3rem 1.4rem;
+}
+.cue-card .cue-label {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .5rem;
+}
+.cue-card blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: .6rem;
+}
+.cue-card p {
+  font-size: .76rem;
+  color: var(--mid);
+  line-height: 1.55;
+}
+
+/* ── REFLECTION ── */
+.reflection-card {
+  background: var(--white);
+  border: 1px solid rgba(15,25,35,.08);
+  border-radius: 4px;
+  padding: 2rem 2.2rem;
+}
+.reflection-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  letter-spacing: .07em;
+  color: var(--ink);
+  margin-bottom: .3rem;
+}
+.reflection-card .sub {
+  font-size: .8rem;
+  color: var(--soft);
+  margin-bottom: 1.5rem;
+}
+.reflection-prompts {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.reflect-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: .9rem 1.1rem;
+  background: var(--mist);
+  border-radius: 3px;
+}
+.reflect-diamond {
+  width: 10px; height: 10px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: .25rem;
+}
+.reflect-item p {
+  font-size: .82rem;
+  color: var(--mid);
+  line-height: 1.55;
+}
+
+/* ── CTA ── */
+.cta-section {
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+.cta-section p {
+  font-size: .78rem;
+  color: var(--soft);
+  letter-spacing: .06em;
+  margin-bottom: 1.5rem;
+}
+.btn-cta {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--white);
+  text-decoration: none;
+  border: none;
+  padding: 1rem 3.2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background .25s, transform .15s;
+}
+.btn-cta:hover { background: #1e3448; transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+}
+footer span { color: rgba(201,169,110,.5); }
+
+/* Responsive */
+@media (max-width: 580px) {
+  .activity-strip { gap: 1rem; }
+  .mission-card { padding: 1.8rem 1.5rem; }
+  .zone-row { grid-template-columns: 44px 1fr; }
+  .zone-tag { display: none; }
+  .cta-section .btn-cta { padding: .9rem 2.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <p class="hero-eyebrow">Swarovski · Team Rehearsal</p>
+  <h1>The Wonder<em>Walk</em></h1>
+  <p class="hero-tagline">
+    An immersive store tour rehearsal — transforming each zone into a storytelling experience and building the confidence to deliver wonder, every time.
+  </p>
+  <div class="hero-scroll" onclick="document.getElementById('content').scrollIntoView({behavior:'smooth'})">
+    <div class="scroll-line"></div>
+    Begin
+  </div>
+</section>
+
+<!-- ══ ACTIVITY STRIP ══ -->
+<div class="activity-strip">
+  <div class="activity-chip"><div class="chip-dot"></div>Activity: Wonder Walk Rehearsal</div>
+  <span class="chip-sep">·</span>
+  <div class="activity-chip"><div class="chip-dot"></div>Format: Peer-to-Peer Practice</div>
+  <span class="chip-sep">·</span>
+  <div class="activity-chip"><div class="chip-dot"></div>Setting: In-Store</div>
+  <span class="chip-sep">·</span>
+  <div class="activity-chip"><div class="chip-dot"></div>Goal: Immersive Client Experience</div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<main class="content" id="content">
+<div class="content-inner">
+
+  <!-- Mission -->
+  <div class="mission-card">
+    <p class="section-label">Customer Connection</p>
+    <h2>Deliver a world of wonder,<br>not just a store tour.</h2>
+    <p>Every client who walks through our doors should feel transported — into a space of light, precision, and possibility. The Wonder Walk is our way of making that happen with intention, consistency, and genuine warmth. This rehearsal prepares you to lead that experience, every time.</p>
+  </div>
+
+  <!-- Steps -->
+  <div class="steps-section">
+    <p class="section-label">How it works</p>
+    <h3>Step-by-step rehearsal</h3>
+    <p class="steps-intro">Each step builds on the last. Move through the store physically — this is a live walkthrough, not a desk exercise.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <span class="step-icon">🚶</span>
+        <h4>Walk the zones</h4>
+        <p>Guide your partner through each store zone as if leading a real customer — from entrance to checkout.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <span class="step-icon">✦</span>
+        <h4>Share the story</h4>
+        <p>In each zone, share key information and highlight the storytelling cues that make the moment memorable.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <span class="step-icon">💬</span>
+        <h4>Reflect together</h4>
+        <p>After the rehearsal, each team member shares their favourite part of the tour and why they love presenting it.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <span class="step-icon">🌟</span>
+        <h4>Refine &amp; inspire</h4>
+        <p>Encourage feedback and tips. Make the tour more immersive with each round — no two tours need to be identical.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zones -->
+  <div class="zones-section">
+    <p class="section-label">Store map</p>
+    <h3>Your journey through the store</h3>
+    <p class="zones-intro">Each zone has its own atmosphere, clientele, and story. Know them all — and know what wonder looks like in each one.</p>
+    <div class="zones-list">
+      <div class="zone-row">
+        <div class="zone-num-badge">I</div>
+        <div class="zone-info">
+          <h4>The Arrival</h4>
+          <p>First impressions and the three-second pause — let the space speak before you do.</p>
+        </div>
+        <div class="zone-tag">Entrance</div>
+      </div>
+      <div class="zone-row">
+        <div class="zone-num-badge">II</div>
+        <div class="zone-info">
+          <h4>Signature Collection</h4>
+          <p>Brand storytelling, emotional connection, and the gift narrative. This is the heart of Swarovski.</p>
+        </div>
+        <div class="zone-tag">Floor One</div>
+      </div>
+      <div class="zone-row">
+        <div class="zone-num-badge">III</div>
+        <div class="zone-info">
+          <h4>The Jewel Bar</h4>
+          <p>High Jewelry — slower pace, velvet tray, deliberate silence. Where value is felt, not explained.</p>
+        </div>
+        <div class="zone-tag">Atelier</div>
+      </div>
+      <div class="zone-row">
+        <div class="zone-num-badge">IV</div>
+        <div class="zone-info">
+          <h4>Gifting &amp; Farewell</h4>
+          <p>The closing ritual — packaging, the personal send-off, and the story the client carries home.</p>
+        </div>
+        <div class="zone-tag">Checkout</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Storytelling cues -->
+  <div class="cues-section">
+    <p class="section-label">Storytelling toolkit</p>
+    <h3>Lines that open doors</h3>
+    <p class="cues-intro">Use these cues as a starting point — then make them your own. The best tours feel personal, not scripted.</p>
+    <div class="cues-grid">
+      <div class="cue-card">
+        <div class="cue-label">At the entrance</div>
+        <blockquote>"Is this your first time experiencing The Wonder Walk?"</blockquote>
+        <p>Opens without pressure. Invites curiosity rather than triggering a defensive response.</p>
+      </div>
+      <div class="cue-card">
+        <div class="cue-label">On the collection</div>
+        <blockquote>"This piece was inspired by Daniel Swarovski's original vision — precision catching light."</blockquote>
+        <p>Connects product to heritage. Turns an object into a story the client feels part of.</p>
+      </div>
+      <div class="cue-card">
+        <div class="cue-label">On gifting</div>
+        <blockquote>"Is this a treat for yourself, or for someone who deserves to feel special?"</blockquote>
+        <p>Warm, non-transactional. Creates space for the client to share — which reveals exactly how to serve them.</p>
+      </div>
+      <div class="cue-card">
+        <div class="cue-label">At the farewell</div>
+        <blockquote>"Enjoy it — it suits you beautifully."</blockquote>
+        <p>The last word becomes the memory. Use the client's name here. This is the moment that travels with them.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reflection -->
+  <div class="reflection-card">
+    <p class="section-label">After the rehearsal</p>
+    <h3>Reflect as a team</h3>
+    <p class="sub">Take five minutes together. No pressure — just honest conversation.</p>
+    <div class="reflection-prompts">
+      <div class="reflect-item">
+        <div class="reflect-diamond"></div>
+        <p>What was your favourite zone to present — and what made it feel alive when you said it out loud?</p>
+      </div>
+      <div class="reflect-item">
+        <div class="reflect-diamond"></div>
+        <p>Was there a moment where the tour genuinely felt like more than information — where it felt like an experience?</p>
+      </div>
+      <div class="reflect-item">
+        <div class="reflect-diamond"></div>
+        <p>What's one thing your partner did during their tour that you want to borrow for your own?</p>
+      </div>
+      <div class="reflect-item">
+        <div class="reflect-diamond"></div>
+        <p>If a customer only remembered one thing from the tour, what would you want it to be?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <p>Ready to step inside? Begin the guided rehearsal.</p>
+    <a href="wonder-walk.html" class="btn-cta">Start the Wonder Walk →</a>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <span>Swarovski</span> &nbsp;·&nbsp; The Wonder Walk &nbsp;·&nbsp; Team Training Resource
+</footer>
+
+</body>
+</html>

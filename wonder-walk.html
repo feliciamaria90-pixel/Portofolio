@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swarovski – The Wonder Walk</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sky:     #d6e8f5;
+    --ink:     #0f1923;
+    --gold:    #c9a96e;
+    --gold-lt: #e8d5b0;
+    --white:   #f8fbff;
+    --mist:    #e8f2fa;
+    --soft:    #8daabf;
+    --mid:     #4a6a80;
+    --success: #3d9970;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--mist);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ─── PAGES: only one visible at a time ─── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ══ INTRO PAGE ══ */
+  #page-intro {
+    min-height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--sky);
+    background-image:
+      radial-gradient(ellipse 60% 40% at 70% 30%, rgba(255,255,255,.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 20% 75%, rgba(180,220,250,.5) 0%, transparent 55%);
+  }
+  #page-intro.active { display: flex; }
+
+  .intro-eyebrow {
+    font-size: .62rem; letter-spacing: .32em; font-weight: 600;
+    text-transform: uppercase; color: var(--soft); margin-bottom: 1.2rem;
+  }
+  .intro-h1 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2.8rem, 8vw, 5.5rem); letter-spacing: .18em;
+    color: var(--ink); text-transform: uppercase; line-height: 1; margin-bottom: .2em;
+  }
+  .intro-h1 em {
+    display: block; font-size: .55em; font-style: italic;
+    letter-spacing: .08em; color: var(--mid); margin-top: .1em;
+  }
+  .intro-tagline {
+    font-size: .85rem; color: var(--mid); font-weight: 300;
+    line-height: 1.75; max-width: 380px; margin: 1rem auto 2.8rem;
+  }
+  .btn-start {
+    background: var(--ink); color: var(--white); border: none;
+    padding: 1rem 3rem; font-family: 'Inter', sans-serif;
+    font-size: .7rem; font-weight: 600; letter-spacing: .22em;
+    text-transform: uppercase; cursor: pointer; border-radius: 2px;
+    transition: background .2s, transform .15s;
+  }
+  .btn-start:hover { background: #1e3448; transform: translateY(-2px); }
+
+  /* ══ WALK PAGE ══ */
+  #page-walk { display: none; flex-direction: column; min-height: 100vh; background: var(--mist); }
+  #page-walk.active { display: flex; }
+
+  /* Sticky progress bar */
+  .progress-bar {
+    position: sticky; top: 0; z-index: 100;
+    width: 100%; background: var(--white);
+    border-bottom: 1px solid rgba(0,0,0,.07);
+    display: flex;
+  }
+  .zone-tab {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: .9rem .5rem; gap: .3rem;
+    font-size: .58rem; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--soft);
+    border-bottom: 3px solid transparent;
+    transition: color .3s, border-color .3s; user-select: none;
+  }
+  .zone-tab .znum {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 1.5px solid currentColor;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .62rem; font-weight: 700;
+    transition: background .3s, color .3s, border-color .3s;
+  }
+  .zone-tab.active { color: var(--ink); border-bottom-color: var(--gold); }
+  .zone-tab.active .znum { background: var(--gold); border-color: var(--gold); color: #fff; }
+  .zone-tab.done { color: var(--success); border-bottom-color: var(--success); }
+  .zone-tab.done .znum { background: var(--success); border-color: var(--success); color: #fff; }
+  .zone-tab.done .znum::before { content: '✓'; }
+
+  /* Zone content area — scrolls naturally */
+  .zone-content {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 2rem 1.2rem 4rem;
+  }
+
+  .zone-card {
+    background: var(--white); border-radius: 4px;
+    width: 100%; max-width: 780px;
+    box-shadow: 0 4px 28px rgba(15,25,35,.08);
+    overflow: hidden;
+  }
+
+  /* Zone header colours */
+  .zh { padding: 1.6rem 2rem; display: flex; align-items: center; gap: 1.2rem; }
+  .zh-ink   { background: #0f1923; }
+  .zh-gold  { background: #1a110a; }
+  .zh-jewel { background: #0a0f1a; }
+  .zh-close { background: #0d1710; }
+
+  .zh-icon {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid rgba(201,169,110,.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .zh-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.5rem; letter-spacing: .1em; color: #fff; }
+  .zh-sub { font-size: .68rem; letter-spacing: .16em; color: var(--gold); text-transform: uppercase; margin-top: .15rem; }
+
+  .zd {
+    padding: .6rem 2rem; background: #f2f7fb;
+    border-top: 1px solid rgba(15,25,35,.06);
+    border-bottom: 1px solid rgba(15,25,35,.06);
+    font-size: .62rem; font-weight: 700; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--soft);
+  }
+  .zb { padding: 1.8rem 2rem; }
+
+  .story-text { font-size: .87rem; line-height: 1.88; color: #2a3f52; margin-bottom: 1.4rem; }
+
+  .cue-box {
+    background: #f8fbff; border-left: 3px solid var(--gold);
+    border-radius: 0 3px 3px 0; padding: .9rem 1.2rem; margin-bottom: 1.4rem;
+  }
+  .cue-lbl { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .3rem; }
+  .cue-box blockquote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--ink); line-height: 1.45; }
+
+  .hs-lbl { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--soft); margin-bottom: .75rem; }
+  .hotspots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: .85rem; margin-bottom: 1.4rem; }
+
+  .hs {
+    border: 1px solid rgba(15,25,35,.1); border-radius: 3px;
+    padding: 1rem 1.1rem; cursor: pointer; position: relative;
+    transition: border-color .2s, box-shadow .2s, transform .15s;
+  }
+  .hs:hover { border-color: var(--gold); box-shadow: 0 2px 12px rgba(201,169,110,.14); transform: translateY(-2px); }
+  .hs.checked { border-color: var(--success); background: rgba(61,153,112,.04); }
+  .hs-cat { font-size: .62rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); margin-bottom: .35rem; }
+  .hs-name { font-size: .85rem; font-weight: 500; color: var(--ink); margin-bottom: .25rem; padding-right: 1.6rem; }
+  .hs-tip { font-size: .76rem; color: #4a6070; line-height: 1.5; display: none; margin-top: .45rem; border-top: 1px solid rgba(15,25,35,.07); padding-top: .45rem; }
+  .hs.checked .hs-tip { display: block; }
+  .hs-check {
+    position: absolute; top: .75rem; right: .75rem;
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 1.5px solid #cdd8e0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .62rem; color: transparent; transition: all .2s;
+  }
+  .hs.checked .hs-check { background: var(--success); border-color: var(--success); color: #fff; }
+
+  .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px,1fr)); gap: .85rem; margin-bottom: .5rem; }
+  .tech-card { background: #f2f7fb; border-radius: 3px; padding: 1rem 1.1rem; }
+  .tech-lbl { font-size: .6rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: .35rem; }
+  .tech-card p { font-size: .78rem; line-height: 1.55; color: var(--mid); }
+
+  .quiz-box {
+    background: #f0f7ff; border-left: 3px solid var(--gold);
+    border-radius: 0 3px 3px 0; padding: 1.3rem 1.5rem; margin-bottom: 1.4rem;
+  }
+  .quiz-lbl { font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .6rem; }
+  .quiz-q { font-size: .88rem; font-weight: 500; color: var(--ink); margin-bottom: .9rem; line-height: 1.5; }
+  .quiz-opts { display: flex; flex-direction: column; gap: .45rem; }
+  .quiz-opt {
+    padding: .65rem 1rem; border: 1.5px solid rgba(15,25,35,.1);
+    border-radius: 3px; cursor: pointer; font-size: .81rem;
+    color: #2a3f52; line-height: 1.4; transition: all .2s; background: var(--white);
+  }
+  .quiz-opt:hover { border-color: var(--gold); }
+  .quiz-opt.correct { border-color: var(--success); background: rgba(61,153,112,.07); color: var(--success); font-weight: 500; }
+  .quiz-opt.wrong   { border-color: #c0392b; background: rgba(192,57,43,.06); color: #c0392b; }
+  .quiz-fb { margin-top: .75rem; font-size: .78rem; font-weight: 500; min-height: 1em; line-height: 1.5; }
+  .quiz-fb.ok  { color: var(--success); }
+  .quiz-fb.err { color: #c0392b; }
+
+  .scenario-box { border: 1px solid rgba(15,25,35,.1); border-radius: 3px; overflow: hidden; margin-bottom: 1.4rem; }
+  .scenario-hd { background: var(--ink); padding: .65rem 1.2rem; font-size: .62rem; letter-spacing: .18em; font-weight: 700; text-transform: uppercase; color: var(--gold); }
+  .scenario-bd { padding: 1.2rem; }
+  .scenario-ctx {
+    display: flex; align-items: flex-start; gap: .9rem;
+    background: #f8fbff; border-radius: 3px; padding: .85rem 1rem; margin-bottom: 1rem;
+  }
+  .sc-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(201,169,110,.15); border: 1px solid rgba(201,169,110,.35);
+    display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+  }
+  .sc-desc { font-size: .82rem; color: #2a3f52; line-height: 1.55; }
+  .sc-prompt { font-size: .82rem; font-weight: 500; color: var(--ink); margin-bottom: .75rem; }
+  .sc-choices { display: flex; flex-direction: column; gap: .45rem; }
+  .sc-choice {
+    padding: .7rem 1rem; border: 1.5px solid rgba(15,25,35,.1);
+    border-radius: 3px; cursor: pointer; font-size: .8rem;
+    color: #2a3f52; background: var(--white); transition: all .2s; text-align: left; line-height: 1.4;
+  }
+  .sc-choice:hover { border-color: var(--gold); }
+  .sc-choice.best { border-color: var(--success); background: rgba(61,153,112,.07); color: #1e6647; font-weight: 500; cursor: default; }
+  .sc-choice.off  { border-color: #e0e8ee; color: #aab8c2; cursor: default; }
+  .sc-fb { margin-top: .85rem; font-size: .78rem; line-height: 1.6; color: var(--mid); display: none; padding: .75rem 1rem; background: #f0f7ff; border-radius: 3px; }
+  .sc-fb.show { display: block; }
+
+  .proceed-row {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem; padding-top: 1.2rem; border-top: 1px solid rgba(15,25,35,.07); flex-wrap: wrap;
+  }
+  .proceed-hint { font-size: .73rem; color: var(--soft); flex: 1; min-width: 160px; }
+  .btn-next {
+    background: var(--ink); color: var(--white); border: none;
+    padding: .85rem 2.4rem; font-family: 'Inter', sans-serif;
+    font-size: .68rem; font-weight: 600; letter-spacing: .16em;
+    text-transform: uppercase; cursor: pointer; border-radius: 2px;
+    transition: background .2s, transform .15s, opacity .2s;
+    opacity: .3; pointer-events: none; white-space: nowrap;
+  }
+  .btn-next.ready { opacity: 1; pointer-events: all; }
+  .btn-next.ready:hover { background: #1e3448; transform: translateY(-1px); }
+
+  /* ══ SUMMARY PAGE ══ */
+  #page-summary {
+    display: none; min-height: 100vh;
+    background: var(--ink); padding: 3rem 1.5rem;
+    flex-direction: column; align-items: center;
+  }
+  #page-summary.active { display: flex; }
+
+  .sum-inner { width: 100%; max-width: 640px; }
+  .badge-wrap { text-align: center; margin-bottom: 2rem; }
+  .badge-circle {
+    display: inline-flex; width: 80px; height: 80px;
+    border: 1px solid var(--gold); border-radius: 50%;
+    align-items: center; justify-content: center;
+    font-size: 2rem; animation: glow 2.5s ease infinite;
+  }
+  @keyframes glow { 0%,100%{box-shadow:0 0 16px rgba(201,169,110,.2)} 50%{box-shadow:0 0 36px rgba(201,169,110,.55)} }
+  .badge-lbl { display: block; font-size: .62rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-top: .6rem; }
+  .sum-h2 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3rem); letter-spacing: .12em;
+    color: #fff; text-transform: uppercase; text-align: center; margin-bottom: .25rem;
+  }
+  .sum-sub { text-align: center; font-size: .68rem; letter-spacing: .18em; color: var(--soft); text-transform: uppercase; margin-bottom: 2rem; }
+
+  .score-row { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem; margin-bottom: 1.5rem; }
+  .score-chip { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09); border-radius: 3px; padding: 1rem; text-align: center; }
+  .score-chip .num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--gold); line-height: 1; }
+  .score-chip .lbl { font-size: .6rem; letter-spacing: .13em; text-transform: uppercase; color: var(--soft); margin-top: .3rem; }
+
+  .zone-results { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,.07); border-radius: 3px; overflow: hidden; margin-bottom: 1.5rem; }
+  .zr-row { background: rgba(255,255,255,.03); display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 1rem; padding: .85rem 1.2rem; }
+  .zr-icon { font-size: 1.1rem; }
+  .zr-name { font-size: .8rem; color: rgba(255,255,255,.75); font-weight: 500; }
+  .zr-badge { font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .25rem .65rem; border-radius: 2px; }
+  .zr-badge.pass { background: rgba(61,153,112,.2); color: #6eddb0; }
+  .zr-badge.ok   { background: rgba(201,169,110,.15); color: var(--gold-lt); }
+
+  .checklist { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 3px; padding: 1.2rem 1.5rem; margin-bottom: 1.5rem; }
+  .checklist h4 { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .85rem; }
+  .check-item { display: flex; gap: .7rem; align-items: flex-start; font-size: .8rem; color: rgba(255,255,255,.65); margin-bottom: .5rem; line-height: 1.5; }
+  .check-item::before { content: '✦'; color: var(--gold); font-size: .62rem; margin-top: .15rem; flex-shrink: 0; }
+
+  .sum-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.2); padding: .75rem 2rem; font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: border-color .2s, background .2s; }
+  .btn-ghost:hover { border-color: var(--gold); background: rgba(201,169,110,.08); }
+  .btn-solid { background: var(--gold); color: var(--ink); border: none; padding: .75rem 2rem; font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; }
+  .btn-solid:hover { opacity: .85; }
+
+  @media (max-width: 500px) {
+    .zone-tab .ztab-name { display: none; }
+    .zh { padding: 1.2rem; }
+    .zb { padding: 1.2rem 1rem; }
+    .zd { padding: .55rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ PAGE 1: INTRO ══ -->
+<div id="page-intro" class="page active">
+  <p class="intro-eyebrow">Swarovski · Team Rehearsal</p>
+  <h1 class="intro-h1">The Wonder<em>Walk</em></h1>
+  <p class="intro-tagline">An immersive store tour rehearsal. Four zones. One unforgettable experience.</p>
+  <button class="btn-start" onclick="startWalk()">Begin Rehearsal</button>
+</div>
+
+<!-- ══ PAGE 2: WALK ══ -->
+<div id="page-walk" class="page">
+  <nav class="progress-bar" id="progressBar"></nav>
+  <div class="zone-content">
+    <div class="zone-card" id="zoneCard"></div>
+  </div>
+</div>
+
+<!-- ══ PAGE 3: SUMMARY ══ -->
+<div id="page-summary" class="page">
+  <div class="sum-inner">
+    <div class="badge-wrap">
+      <div class="badge-circle">✦</div>
+      <span class="badge-lbl">Wonder Walk Certified</span>
+    </div>
+    <h2 class="sum-h2">Tour Complete</h2>
+    <p class="sum-sub" id="summaryDate"></p>
+    <div class="score-row">
+      <div class="score-chip"><div class="num" id="scoreNum">—</div><div class="lbl">Quiz Score</div></div>
+      <div class="score-chip"><div class="num">4</div><div class="lbl">Zones Walked</div></div>
+      <div class="score-chip"><div class="num" id="hotspotNum">—</div><div class="lbl">Tips Unlocked</div></div>
+    </div>
+    <div class="zone-results" id="zoneResults"></div>
+    <div class="checklist">
+      <h4>What you mastered today</h4>
+      <div class="check-item">Set the tone at arrival — let the space speak before you do</div>
+      <div class="check-item">Connected guests to Swarovski's 130-year crystal heritage through natural conversation</div>
+      <div class="check-item">Navigated the Signature Collection with emotional storytelling and the gift narrative</div>
+      <div class="check-item">Delivered the High Jewelry experience with presence, pace, and the velvet tray ritual</div>
+      <div class="check-item">Closed the tour with a personalised farewell that becomes the story guests carry home</div>
+    </div>
+    <div class="sum-actions">
+      <button class="btn-ghost" onclick="restartWalk()">Restart Rehearsal</button>
+      <button class="btn-solid" onclick="window.location.href='wonder-walk-briefing.html'">Back to Briefing</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════
+//  ZONE DATA
+// ══════════════════════════════════════════════════════════
+const zones = [
+  {
+    id:'entrance', icon:'🚪', label:'Arrival', hc:'zh-ink',
+    title:'The Arrival Experience', sub:'Zone 01 · Setting the Stage',
+    story:'The moment a guest crosses the threshold, the Wonder Walk begins. Swarovski stores are designed with a deliberate decompression zone — a brief open space before the first display — so guests can pause, breathe, and take in the light. Your role here is not to sell: it is to welcome someone into another world. Give them three seconds. Then move.',
+    cue:{ lbl:'Opening line', text:'"Welcome — is this your first time experiencing The Wonder Walk?"' },
+    hotspots:[
+      { cat:'The 3-Second Rule', name:'Pause Before Approach', tip:'Let the environment do its first impression. Stand at a 45° angle — visible but not blocking. Move only after the guest has had a moment to take in the space.' },
+      { cat:'Body Language', name:'Open Posture & Eye Contact', tip:'Hands uncrossed, relaxed stance. Make eye contact and smile before you say a word. Warmth is non-verbal first — the body leads, the words follow.' },
+      { cat:'First Read', name:'Browser or Buyer?', tip:'Watch their gaze: heading straight to a display = purpose. Slow sweep of the room = exploring. Adjust your pace accordingly — browsers need space, purposeful guests need direction.' },
+    ],
+    techniques:null,
+    quiz:{
+      q:'A guest enters and immediately walks toward the Constella display. What is your ideal first move?',
+      opts:[
+        'Greet them immediately and begin describing the collection',
+        'Observe for a moment, then approach as they slow down — "That\'s one of our most-loved pieces right now."',
+        'Ask if they need help as soon as they\'re through the door',
+        'Give them the full store map and let them explore alone',
+      ],
+      correct:1,
+      ok:'Exactly. Letting them land first, then joining their moment of discovery, feels natural — not like an interception.',
+      err:'Moving immediately can feel like pressure. Wait for their natural pause, then join their curiosity.',
+    },
+    scenario:{
+      avatar:'👩',
+      ctx:'A guest enters looking distracted — she\'s checking her phone and seems uncertain where to go. She hasn\'t made eye contact.',
+      prompt:'How do you welcome her without making her feel watched or pressured?',
+      choices:[
+        { t:'Say nothing and wait nearby — let her come to you when she\'s ready', best:false },
+        { t:'Walk over immediately: "Can I help you find something?"', best:false },
+        { t:'Make eye contact as she looks up, smile warmly, and say "Take your time — I\'m here if anything catches your eye."', best:true },
+        { t:'Hand her a brochure and point toward the Signature display', best:false },
+      ],
+      fb:'The best welcome gives permission to explore without obligation. "Take your time" removes pressure while keeping the door open. A smile before words is what makes it feel human, not scripted.',
+    },
+  },
+  {
+    id:'signature', icon:'✦', label:'Signature', hc:'zh-gold',
+    title:'Signature Collection', sub:'Zone 02 · Brand Storytelling',
+    story:'The Signature Collection is the heartbeat of the Swarovski universe — accessible luxury anchored in over 130 years of crystal craftsmanship. This zone carries the brand\'s most iconic pieces: the Swan, the Constella line, and the Stella range. Your role here is not to recite features. It is to connect each piece to a feeling, a moment, a person. Ask yourself: what story does this piece want to tell today?',
+    cue:{ lbl:'Storytelling hook', text:'"Daniel Swarovski invented precision crystal cutting in 1895. Every piece in this collection carries that same obsession with light."' },
+    hotspots:[
+      { cat:'The Swan', name:'Swarovski\'s Most Iconic Symbol', tip:'The Swan has represented Swarovski since 1988 — it\'s not just a motif, it\'s a mark of authenticity. Every Swan piece carries the brand\'s promise: precision cut, enduring brilliance. Use it as your shortcut into the brand story.' },
+      { cat:'Constella', name:'The Bestselling Line', tip:'Constella is inspired by starlight — each stone is set to maximise light refraction from every angle. When a guest asks "what\'s popular right now?", Constella is your answer. Invite them to hold it near the light source and watch the reaction.' },
+      { cat:'Stella', name:'For the Self-Expressive Guest', tip:'Stella is bolder, more architectural — designed for guests who dress for themselves, not for occasions. If you notice someone drawn to colour, structure, or statement pieces, Stella is your bridge from browsing to belonging.' },
+      { cat:'Gift Narrative', name:'Over 60% Are Gifts', tip:'Always ask: "Is this a treat for yourself, or for someone special?" This single question unlocks everything — budget, occasion, and the emotional weight the piece needs to carry. The answer shapes the entire rest of your conversation.' },
+    ],
+    techniques:[
+      { lbl:'The Try-On Invite', body:'Never describe a piece without offering it. "Would you like to try it on?" converts curiosity into a physical, emotional connection that no amount of description can replicate.' },
+      { lbl:'Light Positioning', body:'Before handing any piece over, angle it toward the nearest light source. The first sparkle the guest sees sets the emotional benchmark for their entire visit — let the crystal do the opening.' },
+      { lbl:'The Pairing Suggestion', body:'Once a guest shows interest in a single piece, introduce a companion: "This pairs beautifully with the matching earrings." Multi-piece suggestions increase average basket size by 40%.' },
+    ],
+    quiz:{
+      q:'A guest picks up a Constella necklace and says: "It\'s beautiful, but I\'m not sure it\'s worth it." What is the strongest response?',
+      opts:[
+        'Reassure them it\'s very affordable compared to other luxury brands',
+        'Explain the precision-cut crystal process, mention the 130-year heritage, then invite them to try it on near the light',
+        'Offer to check if there\'s a similar piece at a lower price point',
+        'Tell them it\'s one of the bestsellers and many guests love it',
+      ],
+      correct:1,
+      ok:'Value is built through story and sensory experience. Heritage gives the "why", and the try-on gives the "yes".',
+      err:'Price comparison and social proof are weak answers here. The guest is asking for permission to love it — give them a story and a moment with the piece.',
+    },
+    scenario:{
+      avatar:'👫',
+      ctx:'A couple enters together. One is immediately drawn to a Swan pendant and starts touching pieces. The other stands back, hands in pockets, looking slightly bored.',
+      prompt:'How do you serve both guests without losing either?',
+      choices:[
+        { t:'Focus entirely on the engaged guest — the other will get involved if they want to', best:false },
+        { t:'Engage the excited guest with the Swan story, then briefly turn to the other: "Feel free to explore — I\'ll make sure your time here is worthwhile." Keep both in your orbit.', best:true },
+        { t:'Ask the disengaged guest directly: "Is there anything you\'re looking for today?" repeatedly until they engage', best:false },
+        { t:'Hand them both a product catalogue and let them self-direct', best:false },
+      ],
+      fb:'The engaged guest leads the moment, but the quiet guest often makes the final decision. Acknowledge both — a nod, a smile, a low-pressure invite. The purchase frequently depends on the person who said the least.',
+    },
+  },
+  {
+    id:'highjewelry', icon:'💎', label:'High Jewelry', hc:'zh-jewel',
+    title:'The Jewel Bar', sub:'Zone 03 · High Jewelry Atelier',
+    story:'The Jewel Bar is where the Wonder Walk shifts register entirely. Slow down. Lower your voice slightly. This zone is for guests considering a significant purchase — a milestone gift, a personal statement, or a once-in-a-lifetime piece. The environment signals rarity; your pace and presence should match it. Here, silence is not awkward. It is doing work for you.',
+    cue:{ lbl:'Zone transition cue', text:'"This is our High Jewelry atelier — pieces designed to be worn for decades, not just seasons."' },
+    hotspots:[
+      { cat:'The Velvet Tray', name:'The Presentation Ritual', tip:'Always retrieve pieces with the velvet tray — never hand jewelry directly from the case. Place the tray on the counter and set the piece with deliberate care. This ritual communicates extraordinary value before you\'ve spoken a single word about the piece.' },
+      { cat:'Gloves & Handling', name:'Care as Theatre', tip:'Handling pieces with visible care — gently straightening a chain before presenting, smoothing the velvet beneath a ring — is a performance of quality. Guests notice everything. It elevates the moment and signals reverence.' },
+      { cat:'The Pairing Moment', name:'Build the Complete Look', tip:'High Jewelry is often purchased as a collection. Once a guest shows interest in a ring, bring the matching earrings and bracelet to the tray: "These were designed to be worn together — the set tells a complete story."' },
+      { cat:'Soft Scarcity', name:'Truthful Urgency', tip:'If a piece is limited edition or genuinely low in stock, say so honestly: "We currently have only two of these in this configuration." Accurate scarcity creates considered urgency — never manufacture it. Guests sense dishonesty instantly.' },
+      { cat:'The Silence', name:'Let the Piece Speak', tip:'After placing a piece on the tray, step back slightly and say nothing for 3–5 seconds. Let the guest look. Resist every urge to fill the silence — it is doing more work than any words could. The guest\'s expression tells you everything.' },
+    ],
+    techniques:[
+      { lbl:'The Slower Pace', body:'Match the zone\'s atmosphere: deliberate movements, a quieter tone, fewer words chosen more carefully. In premium retail, pace signals importance. Rushing communicates the opposite of luxury.' },
+      { lbl:'The Wrist & Mirror Moment', body:'For bracelets and rings, gently suggest: "Would you like to see how it sits?" Once a piece is on their body and they\'ve seen themselves wearing it, the emotional decision has already been made. The rest is logistics.' },
+      { lbl:'The Provenance Story', body:'Every High Jewelry piece has a design origin. Know it. "This was inspired by the geometry of natural ice crystals — part of our atelier collection since 2019." Specificity is the language of expertise, and expertise builds trust.' },
+    ],
+    quiz:{
+      q:'A guest has been quietly admiring a High Jewelry ring for nearly two minutes but hasn\'t asked any questions. What do you do?',
+      opts:[
+        'Approach immediately and begin explaining the piece in full detail',
+        'Wait until they move away, then greet them as they look up',
+        'Step alongside them gently and say quietly: "Would you like to see it on the tray?" — then say nothing more until they respond',
+        'Ask from a distance: "Do you need any help over there?"',
+      ],
+      correct:2,
+      ok:'Perfect. One quiet offer, then complete silence. You\'ve opened a door without pushing them through it. The guest will lead — your job is to be ready.',
+      err:'In High Jewelry, the lightest touch always wins. One soft invitation, then wait. Anything more tips from presence into pressure.',
+    },
+    scenario:{
+      avatar:'👨',
+      ctx:'A man enters the Jewel Bar alone, smartly dressed. He studies the cases carefully but says nothing. After two minutes, he quietly asks: "Do you have anything that would mark a 25th anniversary?"',
+      prompt:'This is an emotional, significant purchase moment. How do you open the conversation?',
+      choices:[
+        { t:'Take him directly to the highest price point pieces — a 25th anniversary deserves something exceptional', best:false },
+        { t:'Ask his budget first, then show him what fits within it', best:false },
+        { t:'Smile, pause, and say: "25 years is something remarkable. Before I show you anything — can you tell me a little about her?" Then listen fully before you reach for the tray.', best:true },
+        { t:'Immediately show him three options across different price ranges so he can self-select', best:false },
+      ],
+      fb:'The question before the product is everything in High Jewelry. Understanding who she is, what she loves, and what this moment means gives you all the information you need — and transforms a sale into a story. Always listen before you reach for the tray.',
+    },
+  },
+  {
+    id:'exit', icon:'🎁', label:'Gifting & Exit', hc:'zh-close',
+    title:'Gifting & The Farewell', sub:'Zone 04 · The Closing Ritual',
+    story:'The Wonder Walk does not end at payment. The closing ritual — packaging, the personal touch, the farewell — is the final chapter of the story you\'ve been telling since the guest arrived. Done well, it becomes the anecdote they share with friends. The Swarovski box is not packaging. It is the last sensory moment of the experience. Treat it with the same care you brought to every other zone.',
+    cue:{ lbl:'Packaging cue', text:'"Let me make this beautiful for you — the presentation is part of the gift."' },
+    hotspots:[
+      { cat:'The Swarovski Box', name:'Packaging as Product', tip:'Before closing the box, hold it slightly open and angled toward the guest — let them see the interior: the cushioned lining, the tissue, the piece nestled inside. This preview is part of the gift experience. It makes the unboxing feel earned.' },
+      { cat:'The Ribbon', name:'Tie with Intention', tip:'A ribbon tied slowly and carefully communicates that this moment matters. Rushed ribbon says the opposite. Make it a small, visible act of care — it takes 15 seconds and the guest watches every one of them.' },
+      { cat:'The Gift Message', name:'Offer the Personal Touch', tip:'Always ask: "Would you like to include a handwritten gift message?" Even when the guest declines, the offer signals that Swarovski sees this as a complete gifting experience — not just a product in a bag.' },
+      { cat:'Club Swarovski', name:'The Exclusive Invite', tip:'Frame membership as access, never as admin: "Before you go — I\'d love to invite you to Club Swarovski. You\'ll get early access to new collections and invitations to exclusive in-store events." Lead with the experience, never with discounts.' },
+      { cat:'The Farewell', name:'The Last Line Is the One They Remember', tip:'Use their name if you know it. Make eye contact. Say something personal tied to your conversation: "[Name], I hope it brings exactly the moment you\'re imagining." This is the line they quote when they tell the story to someone else.' },
+    ],
+    techniques:[
+      { lbl:'The Warm Transfer', body:'If a colleague processed the payment, walk back to the guest yourself for the final farewell. Never let the experience end with a receipt. End it with a face they recognise and a moment that feels complete.' },
+      { lbl:'Crystal Care Moment', body:'As you hand over the bag, briefly mention care: "A soft cloth is all it needs — it\'ll keep its brilliance for years." This adds quiet confidence to the purchase and prevents post-purchase doubt from setting in.' },
+      { lbl:'The Walk to the Door', body:'Where possible, walk the guest to the edge of the zone or toward the exit. Not as formality — as a genuine send-off. Those extra few steps make a memorable difference and signal that the relationship matters beyond the transaction.' },
+    ],
+    quiz:{
+      q:'The guest has paid and is ready to leave. You\'ve had a warm conversation throughout their visit. What does the ideal Swarovski farewell look like?',
+      opts:[
+        '"Thank you so much, have a lovely day!" as you hand over the bag and return to the floor',
+        'Process the receipt efficiently and return to assist other guests',
+        'Walk with the guest toward the door, present the bag with both hands, use their name, and close with one personal remark tied to something specific from your conversation',
+        'Invite them to leave a Google review on their way out',
+      ],
+      correct:2,
+      ok:'The farewell is the moment they\'ll replay. A personal, unhurried send-off tied to your actual conversation transforms a purchase into a memory — and a memory into a recommendation.',
+      err:'A warm transaction ending is not the same as a Wonder Walk farewell. The last moment must feel personal, specific to this guest, and completely unhurried.',
+    },
+    scenario:{
+      avatar:'👩‍👧',
+      ctx:'A mother and teenage daughter have just bought a Stella ring — the daughter\'s very first Swarovski piece. The mother is finishing payment; the daughter is beaming, staring at the box.',
+      prompt:'This is a milestone moment. How do you close the tour for both of them?',
+      choices:[
+        { t:'Hand the bag to the mother and thank them both warmly for visiting', best:false },
+        { t:'Address the daughter directly: hand her the bag, hold her gaze, and say: "This is yours — the first of many. I hope it\'s everything." Let the mother watch her daughter\'s reaction.', best:true },
+        { t:'Remind the daughter to register for Club Swarovski so she gets birthday benefits', best:false },
+        { t:'Offer to re-wrap the piece so she can save the unboxing moment for later at home', best:false },
+      ],
+      fb:'The emotional centre of this transaction is the daughter — her first piece, her first wonder. Directing the farewell to her makes the moment entirely hers. The mother sees it, feels it, and will talk about it. That\'s the story they both carry home. That\'s the Wonder Walk.',
+    },
+  },
+];
+
+// ══════════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════════
+let cur = 0, quizCorrect = 0, totalHS = 0, doneHS = 0;
+let st = [];
+
+function initState() {
+  st = zones.map(z => ({
+    hs: new Array(z.hotspots.length).fill(false),
+    quizDone: false, quizRight: false, scDone: false,
+  }));
+}
+
+// ══════════════════════════════════════════════════════════
+//  PAGES
+// ══════════════════════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function startWalk() {
+  cur = 0; quizCorrect = 0; doneHS = 0;
+  totalHS = zones.reduce((a, z) => a + z.hotspots.length, 0);
+  initState();
+  buildBar();
+  renderZone(0);
+  showPage('page-walk');
+}
+
+function restartWalk() { startWalk(); }
+
+// ══════════════════════════════════════════════════════════
+//  PROGRESS BAR
+// ══════════════════════════════════════════════════════════
+function buildBar() {
+  document.getElementById('progressBar').innerHTML = zones.map((z, i) => `
+    <div class="zone-tab${i===0?' active':''}" id="tab${i}">
+      <div class="znum">${i+1}</div>
+      <span class="ztab-name">${z.label}</span>
+    </div>`).join('');
+}
+
+function updateBar(idx) {
+  zones.forEach((_, i) => {
+    const t = document.getElementById('tab'+i);
+    t.className = 'zone-tab'+(i<idx?' done':i===idx?' active':'');
+    if (i<idx) t.querySelector('.znum').textContent='';
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+//  RENDER ZONE
+// ══════════════════════════════════════════════════════════
+function renderZone(idx) {
+  const z = zones[idx], s = st[idx];
+  const card = document.getElementById('zoneCard');
+
+  const hsHTML = z.hotspots.map((h,hi)=>`
+    <div class="hs${s.hs[hi]?' checked':''}" id="hs${idx}_${hi}" onclick="tapHS(${idx},${hi})">
+      <div class="hs-check">${s.hs[hi]?'✓':''}</div>
+      <div class="hs-cat">${h.cat}</div>
+      <div class="hs-name">${h.name}</div>
+      <div class="hs-tip">${h.tip}</div>
+    </div>`).join('');
+
+  const techHTML = z.techniques ? `
+    <div class="zd">Techniques</div>
+    <div class="zb">
+      <div class="tech-grid">
+        ${z.techniques.map(t=>`
+          <div class="tech-card">
+            <div class="tech-lbl">${t.lbl}</div>
+            <p>${t.body}</p>
+          </div>`).join('')}
+      </div>
+    </div>` : '';
+
+  const qHTML = `
+    <div class="quiz-box">
+      <div class="quiz-lbl">Knowledge Check</div>
+      <div class="quiz-q">${z.quiz.q}</div>
+      <div class="quiz-opts">
+        ${z.quiz.opts.map((o,oi)=>`
+          <div class="quiz-opt" id="qo${idx}_${oi}" onclick="answerQ(${idx},${oi})">${o}</div>`).join('')}
+      </div>
+      <div class="quiz-fb" id="qfb${idx}"></div>
+    </div>`;
+
+  const scHTML = `
+    <div class="scenario-box">
+      <div class="scenario-hd">Scenario Challenge</div>
+      <div class="scenario-bd">
+        <div class="scenario-ctx">
+          <div class="sc-avatar">${z.scenario.avatar}</div>
+          <p class="sc-desc">${z.scenario.ctx}</p>
+        </div>
+        <p class="sc-prompt">${z.scenario.prompt}</p>
+        <div class="sc-choices">
+          ${z.scenario.choices.map((c,ci)=>`
+            <button class="sc-choice" id="sc${idx}_${ci}" onclick="pickSC(${idx},${ci})">${c.t}</button>`).join('')}
+        </div>
+        <div class="sc-fb" id="scfb${idx}">${z.scenario.fb}</div>
+      </div>
+    </div>`;
+
+  const isLast = idx === zones.length-1;
+
+  card.innerHTML = `
+    <div class="zh ${z.hc}">
+      <div class="zh-icon">${z.icon}</div>
+      <div>
+        <div class="zh-title">${z.title}</div>
+        <div class="zh-sub">${z.sub}</div>
+      </div>
+    </div>
+    <div class="zd">The Story</div>
+    <div class="zb">
+      <p class="story-text">${z.story}</p>
+      <div class="cue-box">
+        <div class="cue-lbl">${z.cue.lbl}</div>
+        <blockquote>${z.cue.text}</blockquote>
+      </div>
+      <div class="hs-lbl">Tap each point to reveal the tip</div>
+      <div class="hotspots">${hsHTML}</div>
+    </div>
+    ${techHTML}
+    <div class="zd">Test Yourself</div>
+    <div class="zb">
+      ${qHTML}
+      ${scHTML}
+      <div class="proceed-row">
+        <span class="proceed-hint" id="phint"></span>
+        <button class="btn-next" id="pBtn" onclick="${isLast?'finishWalk()':'nextZone()'}">
+          ${isLast?'Complete the Tour ✦':'Next Zone →'}
+        </button>
+      </div>
+    </div>`;
+
+  checkProceed(idx);
+}
+
+// ══════════════════════════════════════════════════════════
+//  INTERACTIONS
+// ══════════════════════════════════════════════════════════
+function tapHS(zi, hi) {
+  if (!st[zi].hs[hi]) { st[zi].hs[hi]=true; doneHS++; }
+  const el = document.getElementById(`hs${zi}_${hi}`);
+  el.classList.add('checked');
+  el.querySelector('.hs-check').textContent='✓';
+  checkProceed(zi);
+}
+
+function answerQ(zi, sel) {
+  if (st[zi].quizDone) return;
+  st[zi].quizDone = true;
+  const z = zones[zi], right = sel === z.quiz.correct;
+  st[zi].quizRight = right;
+  if (right) quizCorrect++;
+  z.quiz.opts.forEach((_,oi)=>{
+    const el=document.getElementById(`qo${zi}_${oi}`);
+    el.style.pointerEvents='none';
+    if(oi===z.quiz.correct) el.classList.add('correct');
+    else if(oi===sel&&!right) el.classList.add('wrong');
+  });
+  const fb=document.getElementById(`qfb${zi}`);
+  fb.textContent = right ? z.quiz.ok : z.quiz.err;
+  fb.className='quiz-fb '+(right?'ok':'err');
+  checkProceed(zi);
+}
+
+function pickSC(zi, ci) {
+  if (st[zi].scDone) return;
+  st[zi].scDone=true;
+  zones[zi].scenario.choices.forEach((_,i)=>{
+    const el=document.getElementById(`sc${zi}_${i}`);
+    el.style.pointerEvents='none';
+    el.classList.add(zones[zi].scenario.choices[i].best?'best':'off');
+  });
+  const fb=document.getElementById(`scfb${zi}`);
+  if(fb) fb.classList.add('show');
+  checkProceed(zi);
+}
+
+function checkProceed(zi) {
+  const s=st[zi], z=zones[zi];
+  const allHS=s.hs.every(Boolean);
+  const ready=allHS&&s.quizDone&&s.scDone;
+  const btn=document.getElementById('pBtn');
+  const hint=document.getElementById('phint');
+  if(!btn) return;
+  btn.classList.toggle('ready',ready);
+  if(ready){
+    hint.textContent='Zone complete — you\'re ready to move on.';
+  } else {
+    const m=[];
+    if(!allHS){ const l=z.hotspots.length-s.hs.filter(Boolean).length; m.push(`${l} tip${l>1?'s':''} left`); }
+    if(!s.quizDone) m.push('answer the quiz');
+    if(!s.scDone) m.push('complete the scenario');
+    hint.textContent=m.join(' · ');
+  }
+}
+
+function nextZone() {
+  cur++;
+  updateBar(cur);
+  renderZone(cur);
+  window.scrollTo(0,0);
+}
+
+function finishWalk() {
+  document.getElementById('scoreNum').textContent=`${quizCorrect}/${zones.length}`;
+  document.getElementById('hotspotNum').textContent=`${doneHS}/${totalHS}`;
+  document.getElementById('summaryDate').textContent=
+    new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('zoneResults').innerHTML=zones.map((z,i)=>{
+    const m=st[i].hs.every(Boolean)&&st[i].quizRight&&st[i].scDone;
+    return `<div class="zr-row">
+      <span class="zr-icon">${z.icon}</span>
+      <span class="zr-name">${z.title}</span>
+      <span class="zr-badge ${m?'pass':'ok'}">${m?'Mastered':'Completed'}</span>
+    </div>`;
+  }).join('');
+  showPage('page-summary');
+}
+</script>
+</body>
+</html>

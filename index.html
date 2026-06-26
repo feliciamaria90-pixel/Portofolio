@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarovski - The Wonder Walk Rehearsal Hub</title>
+    
+    <!-- Importăm fontul Serif Premium pentru logo și headers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset și stiluri generale premium */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fcfbfa;
+            color: #1c1c1c;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* 1. ANTET IMERSIV (Cu suport Video Background) */
+        header {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 80px 20px;
+            color: white;
+            background-color: #cee1f2; /* Culoare de siguranță până se încarcă video */
+        }
+
+        /* Video de fundal */
+        .video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.4; /* Să nu acopere textul negru */
+        }
+
+        /* Conținutul din Header pus peste video */
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-title {
+            font-family: 'Cinzel', serif; 
+            font-size: 3.5em; 
+            font-weight: 400; 
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin: 0;
+            color: #000000;
+        }
+
+        .subtitle {
+            font-size: 1.8em; 
+            font-weight: 900; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            margin-bottom: 25px;
+            display: block;
+            
+            background: linear-gradient(120deg, #000000 35%, #ffffff 50%, #000000 65%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: crystalSparkle 3.5s linear infinite;
+        }
+
+        @keyframes crystalSparkle {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
+        /* Butonul START REHEARSAL */
+        .btn-rehearsal {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-rehearsal:hover {
+            background-color: #cee1f2;
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        /* CONTAINER SECȚIUNI */
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            font-size: 1.8em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            color: #000;
+        }
+
+        /* 2. COLECȚII PE DOUĂ RÂNDURI */
+        .collections-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 20px;
+            margin-bottom: 60px;
+        }
+
+        /* Transformăm toate link-urile albastre în butoane de lux */
+        .buton-premium {
+            display: inline-block;
+            padding: 8px 18px;          /* Spațiul din interiorul butonului */
+            color: #000000;             /* Culoarea textului (Negru) */
+            background-color: #ffffff;  /* Culoarea de fundal (Alb) */
+            border: 1px solid #000000;  /* Chenar fin negru */
+            text-decoration: none;      /* Șterge linia albastră de sub text */
+            font-family: sans-serif;    /* Un font curat, modern */
+            text-transform: uppercase;  /* Transformă literele în litere MARI */
+            font-size: 13px;            /* Dimensiunea textului */
+            letter-spacing: 2px;        /* Spațiu elegant între litere */
+            transition: all 0.3s ease;  /* Face trecerea de culori fină */
+            white-space: nowrap;
+        }
+
+        /* Ce se întâmplă când pui mouse-ul pe buton */
+        .buton-premium:hover {
+            color: #ffffff;             /* Textul devine Alb */
+            background-color: #000000;  /* Fundalul devine Negru */
+            transform: scale(1.05);     /* Crește foarte puțin în dimensiune pentru un efect dynamic */
+        }
+
+        /* 3. REHEARSAL TOOLBOX */
+        .toolbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .tool-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 6px;
+            border: 1px solid #eef2f5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            text-align: center;
+        }
+
+        .tool-card h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+            letter-spacing: 1px;
+        }
+
+        .tool-card p {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+
+        .btn-download {
+            background-color: transparent;
+            color: #000;
+            border: 1px solid #000;
+            padding: 8px 20px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-download:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* 4. MEET THE TEAM (4 Persoane + Descrieri Experți) */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .team-member-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .team-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px auto;
+            background-color: #f0f0f0;
+            border: 2px solid #cee1f2;
+        }
+
+        .team-member-card h3 {
+            margin: 10px 0 3px 0;
+            font-size: 1.2em;
+        }
+
+        .team-role {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .team-expert-text {
+            font-size: 0.9em;
+            font-style: italic;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* 5. LIVE FEEDBACK (Post-it notes) */
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .feedback-note {
+            background-color: #fff8de; /* Culoare post-it cald */
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .feedback-note:nth-child(even) {
+            background-color: #fcd7de; /* Alternăm cu roz Swarovski */
+        }
+
+        .feedback-text {
+            font-style: italic;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+
+        .feedback-meta {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+            text-align: right;
+        }
+
+        .divider {
+            width: 50px;
+            height: 1px;
+            background-color: #ddd;
+            margin: 40px auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #f3f3f3;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. ANTET IMERSIV CU BUCLĂ VIDEO -->
+    <header>
+        <video autoplay muted loop playsinline class="video-bg">
+            <source src="store-loop.mp4" type="video/mp4">
+        </video>
+        
+        <div class="header-content">
+            <div class="brand-title">Swarovski</div>
+            <div class="subtitle">The Wonder Walk</div>
+            <button class="btn-rehearsal" onclick="startRehearsal()">Start Rehearsal</button>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- 2. ZONELE DE COLECȚII (Toate transformate în butoane premium uniforme) -->
+     <h2 class="section-title">Store Collections Guide</h2>
+<div class="collections-dropdown" style="text-align: center; margin-bottom: 60px;">
+    <button class="btn-rehearsal" onclick="toggleMenu()" style="margin-bottom: 20px;">Menu ▼</button>
+    
+    <div id="collectionsMenu" class="collections-grid" style="display: none; transition: 0.3s;">
+        <a href="crystal living.html" class="buton-premium">crystal living</a>
+        <a href="capsule.html" class="buton-premium">capsule 1.0</a>
+        <a href="chroma.html" class="buton-premium">chroma</a>
+        <a href="constella.html" class="buton-premium">constella</a>
+        <a href="dragonfly.html" class="buton-premium">dragonfly</a>
+        <a href="gema.html" class="buton-premium">gema</a>
+        <a href="hyperbola.html" class="buton-premium">hyperbola</a>
+        <a href="idyllia.html" class="buton-premium">idyllia</a>
+        <a href="imber.html" class="buton-premium">imber</a>
+        <a href="matrix.html" class="buton-premium">matrix</a>
+        <a href="mesmera.html" class="buton-premium">mesmera</a>
+        <a href="millenia.html" class="buton-premium">millenia</a>
+        <a href="stilla.html" class="buton-premium">stilla</a>
+        <a href="sublima.html" class="buton-premium">sublima</a>
+        <a href="swan.html" class="buton-premium">swan</a>
+        <a href="symbolica.html" class="buton-premium">symbolica</a>
+        <a href="una.html" class="buton-premium">una</a>
+    </div>
+</div>
+
+<script>
+    // Funcție pentru a afișa/ascunde meniul
+    function toggleMenu() {
+        var menu = document.getElementById("collectionsMenu");
+        if (menu.style.display === "none" || menu.style.display === "") {
+            menu.style.display = "flex";
+        } else {
+            menu.style.display = "none";
+        }
+    }
+</script>
+
+        <!-- 3. REHEARSAL TOOLBOX (Resurse Training) -->
+        <h2 class="section-title">Rehearsal Toolbox</h2>
+        <div class="toolbox-grid">
+            <div class="tool-card">
+                <h3>Storytelling Scripts</h3>
+                <p>Complete scenarios and zone guides for the Wonder Walk experience.</p>
+                <a href="merged pdf.pdf" class="btn-download" download="Swarovski_Storytelling_Scripts.pdf">Download PDF</a>
+            </div>
+            <div class="tool-card">
+                <h3>Feedback Sheets</h3>
+                <p>Checklists to evaluate performance, tone, and customer engagement.</p>
+               <a href="feedback-sheet.pdf" class="btn-download" download="Swarovski_Feedback_Sheet.pdf">Download Sheet</a>
+            </div>
+            <div class="tool-card">
+                <h3>Training Calendar</h3>
+                <p>Schedule of the rehearsal sessions for our boutique team this July.</p>
+                <a href="#" class="btn-download" onclick="alert('Opening Calendar...')">View Schedule</a>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 4. MEET THE TEAM -->
+        <h2 class="section-title">Meet the Boutique Team</h2>
+<div class="team-grid">
+    <div class="team-member-card">
+        <img src="Screenshot 2026-06-12 210040.jpg" alt="Team Member" class="team-img">
+        <h3>Felicia</h3>
+        <div class="team-role">Brand Advocate</div>
+        <p class="team-expert-text">"Expert in creating emotional connections through the heritage story of crystals."</p>
+    </div>
+
+    <div class="team-member-card">
+        <img src="Screenshot 2026-06-12 210003.jpg" alt="Team Member" class="team-img">
+        <h3>Madalina</h3>
+        <div class="team-role">Store Manager</div>
+        <p class="team-expert-text">"Specialized in seamless retail flow and orchestrating premium boutique experiences."</p>
+    </div>
+
+    <div class="team-member-card">
+        <img src="Screenshot 2026-06-12 210019.jpg" alt="Team Member" class="team-img">
+        <h3>Georgiana</h3>
+        <div class="team-role">Boutique Stylist</div>
+        <p class="team-expert-text">"Master of mix-and-match styling, matching collections to client personalities."</p>
+    </div>
+
+    <div class="team-member-card">
+        <img src="Screenshot 2026-06-12 205944.jpg" alt="Team Member" class="team-img">
+        <h3>Bianca</h3>
+        <div class="team-role">Sales Consultant</div>
+        <p class="team-expert-text">"Dedicated to custom guest journeys and bringing the Crystal living stories to life."</p>
+    </div>
+</div>
+
+        <div class="divider"></div>
+
+        <!-- 5. FEEDBACK LIVE -->
+        <h2 class="section-title">Live Rehearsal Notes</h2>
+        <div class="feedback-grid">
+            <div class="feedback-note">
+                <p class="feedback-text">"Loved how we simulated the transition from the Matrix zone to Millenia. The storytelling flowed so naturally!"</p>
+                <div class="feedback-meta">— Anonymous Consultant</div>
+            </div>
+            <div class="feedback-note">
+                <p class="feedback-text">"Tip for next session: Let's practice keeping eye contact while presenting the Hyperbola statement pieces."</p>
+                <div class="feedback-meta">— Store Manager Review</div>
+            </div>
+            <div class="feedback-note">
+                <p class="feedback-text">"The new script for Dragonfly Capsule is short but has a great emotional impact. Clients will love it."</p>
+                <div class="feedback-meta">— Rehearsal Note</div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Swarovski Retail Project | Interactive Training Hub</p>
+    </footer>
+
+   <script>
+    function startRehearsal() {
+        // Redirecționează utilizatorul către fișierul de briefing
+        window.location.href = "wonder-walk-briefing.html"; 
+    }
+    
+    function openCollection(name) {
+        alert("Opening the '" + name + "' Story & Training Guide.");
+    }
+</script>
+
+</body>
+</html>

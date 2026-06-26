@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarovski Swan – Interactive Design Concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{serif:["Cinzel","serif"],sans:["Montserrat","sans-serif"]}}}}</script>
+    <style>
+        body{background:radial-gradient(circle at 50% 20%,#0d1117 0%,#030508 65%,#000 100%);color:#e2e8f0;font-family:"Montserrat",sans-serif;overflow-x:hidden}
+        .gc{background:rgba(10,15,25,0.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(226,232,240,0.12)}
+        .ga{background:rgba(5,8,15,0.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(226,232,240,0.30)}
+        @keyframes twinkle{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+        .sp{animation:twinkle 3s infinite ease-in-out}
+        @keyframes pa{0%{transform:scale(.9);opacity:1;box-shadow:0 0 0 0 rgba(226,232,240,0.6)}70%{transform:scale(1.15);opacity:.5;box-shadow:0 0 0 14px rgba(0,0,0,0)}100%{transform:scale(.9);opacity:1;box-shadow:0 0 0 0 rgba(0,0,0,0)}}
+        .hp{animation:pa 2.5s infinite}
+        ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#030508}::-webkit-scrollbar-thumb{background:#1a1f2e;border-radius:3px}
+    </style>
+</head>
+<body class="min-h-screen relative pb-12">
+    <div class="sp absolute pointer-events-none z-0 text-lg" style="top:9%;left:6%;color:#e2e8f0">✦</div>
+    <div class="sp absolute pointer-events-none z-0 text-2xl" style="top:19%;right:12%;animation-delay:1s;color:#94a3b8">✦</div>
+    <div class="sp absolute pointer-events-none z-0 text-sm" style="top:44%;left:16%;animation-delay:1.5s;color:#e2e8f0">✧</div>
+    <div class="sp absolute pointer-events-none z-0 text-md" style="top:74%;right:7%;animation-delay:2s;color:#94a3b8">✦</div>
+    <div class="sp absolute pointer-events-none z-0 text-xl" style="top:87%;left:11%;animation-delay:.5s;color:#e2e8f0">✧</div>
+
+    <header class="w-full py-6 px-8 flex justify-between items-center relative z-10 gc" style="border-color:rgba(226,232,240,0.12)">
+        <a href="index.html" class="flex items-center space-x-3 text-white/70 hover:text-white transition duration-300">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+            <span class="text-xs uppercase tracking-widest font-semibold">All Collections</span>
+        </a>
+        <div class="text-center">
+            <div class="text-[9px] tracking-[6px] uppercase font-bold" style="color:#e2e8f0">Swarovski Universe</div>
+            <div class="font-serif text-xl tracking-[3px] font-medium text-white flex items-center justify-center gap-2">
+                THE WONDER WALK
+                <span class="text-xs px-2.5 py-0.5 rounded-full font-sans tracking-wide" style="background:rgba(226,232,240,0.06);color:#e2e8f0;border:1px solid rgba(226,232,240,0.18)">Swan Collection</span>
+            </div>
+        </div>
+        <span class="text-[10px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-full" style="color:#e2e8f0;background:rgba(226,232,240,0.06);border:1px solid rgba(226,232,240,0.18)">
+            <i class="fa-solid fa-feather mr-1 animate-pulse"></i> Campaign June 2026
+        </span>
+    </header>
+
+    <div class="max-w-6xl mx-auto mt-8 px-4 flex justify-center relative z-10">
+        <div class="p-1.5 rounded-full flex space-x-1 shadow-2xl gc">
+            <button id="btnClient" onclick="toggleMode('client')" class="px-6 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white shadow-lg" style="background:linear-gradient(to right,#374151,#6b7280)">
+                <i class="fa-solid fa-eye mr-2"></i>Client Mode (Experience)
+            </button>
+            <button id="btnAdvisor" onclick="toggleMode('advisor')" class="px-6 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 text-white/60 hover:text-white">
+                <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Advisor Mode (Training)
+            </button>
+        </div>
+    </div>
+
+    <main class="max-w-6xl mx-auto mt-10 px-4 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+            <div class="lg:col-span-7 flex flex-col">
+                <div class="mb-6">
+                    <div class="text-xs uppercase tracking-[6px] font-bold mb-2 flex items-center gap-1.5" style="color:#e2e8f0">
+                        <i class="fa-solid fa-sparkles"></i> The Icon of Swarovski — Heritage Reborn
+                    </div>
+                    <h1 class="font-serif text-4xl lg:text-5xl text-white font-light tracking-wide leading-tight">
+                        Swan
+                        <span class="font-sans font-light text-xl block mt-1" style="color:#94a3b8">Grace, Transformation & Timeless Beauty</span>
+                    </h1>
+                    <p class="text-sm mt-3 font-light max-w-xl leading-relaxed" style="color:rgba(226,232,240,0.60)">The Swan is more than jewelry — it is the ultimate expression of Swarovski's heritage. Iconic, graceful, and deeply symbolic, each Swan piece celebrates the art of transformation. This pendant — rendered in dramatic black with a mixed-metal finish — is the Swan at its boldest.</p>
+                </div>
+
+                <div class="relative w-full aspect-[3/4] max-h-[640px] rounded-2xl overflow-hidden shadow-2xl gc flex items-center justify-center">
+                    <img id="mainVisual" src="data:image/avif;base64,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" alt="Swarovski Swan Pendant – Swan, Black, Mixed Metal Finish"
+                         class="w-full h-full opacity-90 hover:opacity-100 transition duration-500"
+                         style="object-fit:contain;background:#030508"
+                         onerror="handleImageError(this)">
+                    <div id="imgErr" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 text-center rounded-2xl z-20 gc">
+                        <i class="fa-solid fa-feather text-5xl mb-4 animate-pulse" style="color:#e2e8f0"></i>
+                        <h4 class="font-serif text-lg text-white mb-2">Image Loading</h4>
+                        <button onclick="document.getElementById('fileInput').click()" class="px-5 py-2.5 text-white font-bold text-[10px] uppercase tracking-wider rounded-lg hover:scale-105 transition" style="background:linear-gradient(to right,#374151,#6b7280)"><i class="fa-solid fa-upload mr-2"></i>Select Local File</button>
+                    </div>
+                    <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="(function(e){const f=e.target.files[0];if(f){const r=new FileReader();r.onload=ev=>{document.getElementById('mainVisual').src=ev.target.result;document.getElementById('imgErr').classList.add('hidden');showToast('Image mounted!',true)};r.readAsDataURL(f)}})(event)">
+                    <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(3,5,8,0.80) 0%,transparent 50%,rgba(3,5,8,0.30) 100%)"></div>
+                    <div class="absolute inset-3 rounded-lg pointer-events-none" style="border:1px solid rgba(226,232,240,0.15)"></div>
+
+                    <div class="absolute group" style="top:21%;left:37%">
+                        <button onclick="showHotspot(1)" class="w-8 h-8 rounded-full text-white flex items-center justify-center font-bold text-xs border border-white/40 hp hover:scale-110 transition" style="background:#374151">1</button>
+                        <span class="absolute left-10 top-1/2 -translate-y-1/2 px-3 py-1 rounded text-[10px] tracking-widest uppercase font-semibold opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap gc" style="color:#e2e8f0">Black Crystal Body</span>
+                    </div>
+                    <div class="absolute group" style="top:49%;right:23%">
+                        <button onclick="showHotspot(2)" class="w-8 h-8 rounded-full text-white flex items-center justify-center font-bold text-xs border border-white/40 hp hover:scale-110 transition" style="background:#374151">2</button>
+                        <span class="absolute right-10 top-1/2 -translate-y-1/2 px-3 py-1 rounded text-[10px] tracking-widest uppercase font-semibold opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap gc" style="color:#e2e8f0">Mixed Metal Finish</span>
+                    </div>
+                    <div class="absolute group" style="bottom:23%;left:27%">
+                        <button onclick="showHotspot(3)" class="w-8 h-8 rounded-full text-white flex items-center justify-center font-bold text-xs border border-white/40 hp hover:scale-110 transition" style="background:#374151">3</button>
+                        <span class="absolute left-10 top-1/2 -translate-y-1/2 px-3 py-1 rounded text-[10px] tracking-widest uppercase font-semibold opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap gc" style="color:#e2e8f0">Swan Silhouette</span>
+                    </div>
+
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full flex items-center space-x-2 shadow-xl gc">
+                        <span class="inline-block w-2 h-2 rounded-full animate-ping" style="background:#e2e8f0"></span>
+                        <span class="text-xs font-semibold text-white/80">Click numbers to explore Swan's design secrets</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 flex flex-col">
+                <div id="clientContent" class="gc p-8 rounded-2xl h-full flex flex-col justify-between transition-all duration-500">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 mb-6" style="border-bottom:1px solid rgba(226,232,240,0.12)">
+                            <span class="font-serif text-lg tracking-wide" style="color:#e2e8f0">Style Manifesto: Grace & Legacy</span>
+                            <span class="text-[10px] font-bold text-white/40 tracking-widest uppercase px-2 py-0.5 rounded" style="background:rgba(226,232,240,0.06)">Design Ethos</span>
+                        </div>
+                        <div class="space-y-5">
+                            <div>
+                                <h3 class="font-serif text-base text-white font-medium mb-2">A Symbol of Grace</h3>
+                                <p class="text-white/70 text-xs font-light leading-relaxed">The Swan emblem is the hallmark of every authentic Swarovski creation — an eternal icon refined across 125+ years. Rendered in bold black with a mixed-metal finish, this pendant captures the full dramatic power of the swan in its most contemporary expression.</p>
+                            </div>
+                            <div class="pt-4" style="border-top:1px solid rgba(226,232,240,0.12)">
+                                <h3 class="font-serif text-base text-white font-medium mb-2">Crystalline Artistry</h3>
+                                <p class="text-white/70 text-xs font-light leading-relaxed">Crafted with signature pavé techniques, the black crystal body contrasts brilliantly against the polished metalwork. The mixed-metal finish — combining dark and bright tones — creates an arresting visual tension that makes this pendant truly one of a kind.</p>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background:rgba(226,232,240,0.06);border:1px solid rgba(226,232,240,0.18)">
+                                <span class="text-xs uppercase tracking-wider font-semibold block mb-1" style="color:#e2e8f0">
+                                    <i class="fa-solid fa-feather mr-2"></i>Signature Swan Traits
+                                </span>
+                                <span class="text-xs text-white/80 font-light leading-relaxed block">Iconic swan silhouette, black crystal pavé body, mixed-metal finish combining dark and bright tones, polished pendant construction, and the heritage storytelling power of Swarovski's most recognised symbol.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 flex items-center justify-between" style="border-top:1px solid rgba(226,232,240,0.12)">
+                        <div>
+                            <span class="text-[10px] uppercase text-white/40 block">Collection</span>
+                            <span class="text-sm font-serif text-white">Swan · Mixed Metal Finish</span>
+                        </div>
+                        <span class="px-4 py-2 text-xs uppercase tracking-widest rounded-md" style="border:1px solid rgba(226,232,240,0.18);color:#e2e8f0">Iconic</span>
+                    </div>
+                </div>
+
+                <div id="advisorContent" class="hidden ga p-8 rounded-2xl h-full flex flex-col justify-between transition-all duration-500">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 mb-6" style="border-bottom:1px solid rgba(226,232,240,0.30)">
+                            <span class="font-serif text-lg text-white flex items-center">
+                                <i class="fa-solid fa-graduation-cap mr-2.5" style="color:#e2e8f0"></i>Wonder Walk Training Guide
+                            </span>
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded" style="color:#e2e8f0;background:rgba(226,232,240,0.06);border:1px solid rgba(226,232,240,0.18)">Staff Training</span>
+                        </div>
+                        <div id="hsPanel" class="p-4 rounded-xl mb-6 gc">
+                            <div class="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider mb-2" style="color:#e2e8f0">
+                                <i class="fa-solid fa-star animate-pulse"></i>
+                                <span id="hsTitle">Select a hotspot on the visual (1, 2, or 3)</span>
+                            </div>
+                            <p id="hsText" class="text-xs text-white/70 font-light leading-relaxed">Expert insights about Swan will load here to fuel your store tour script.</p>
+                        </div>
+                        <div class="space-y-5">
+                            <div>
+                                <h3 class="font-serif text-sm font-medium mb-1.5" style="color:#e2e8f0"><i class="fa-solid fa-comment-dots mr-2"></i>Storytelling Cue: Iconic Identity</h3>
+                                <p class="text-white/80 text-xs font-light leading-relaxed"><em>"Invite your guest to identify the Swan. It is the hallmark of every authentic Swarovski piece — a testament to 125+ years of crystal craft. With this mixed-metal black edition, we are telling the story of the Swan reborn — darker, bolder, and more powerful than ever before."</em></p>
+                            </div>
+                            <div class="pt-4" style="border-top:1px solid rgba(226,232,240,0.30)">
+                                <h3 class="font-serif text-sm font-medium mb-1.5" style="color:#e2e8f0"><i class="fa-solid fa-user-group mr-2"></i>Rehearsal Prompt: The Heritage Moment</h3>
+                                <ul class="space-y-2 text-xs font-light text-white/80">
+                                    <li class="flex items-start"><i class="fa-solid fa-chevron-right mr-2 mt-1" style="color:#e2e8f0"></i><span><strong>How to present:</strong> Hold the pendant near the store spotlight and rotate it slowly. The black crystals absorb and then dramatically reflect light — demonstrate this contrast to show the piece's unique visual tension.</span></li>
+                                    <li class="flex items-start"><i class="fa-solid fa-chevron-right mr-2 mt-1" style="color:#e2e8f0"></i><span><strong>Immersive Question:</strong> <em>The Swan has been Swarovski's icon for over a century. This black edition is the most powerful version ever made — does it resonate with your personal sense of strength and grace?</em></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 flex items-center justify-between text-xs" style="border-top:1px solid rgba(226,232,240,0.30)">
+                        <span class="text-white/60">Practiced your Swan walkthrough today?</span>
+                        <button onclick="logRehearsal()" class="px-3.5 py-1.5 text-white font-bold tracking-wider uppercase rounded text-[10px] transition shadow-md" style="background:linear-gradient(to right,#374151,#6b7280)">
+                            <i class="fa-solid fa-check mr-1.5"></i>Log Rehearsal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="mt-12 gc p-8 rounded-2xl">
+            <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-6" style="border-bottom:1px solid rgba(226,232,240,0.12)">
+                <div>
+                    <h2 class="font-serif text-2xl text-white font-light tracking-wide">Customer Persona Simulator (Swan)</h2>
+                    <p class="text-xs text-white/40 mt-1">Select a customer profile to reveal the optimal storytelling scenario.</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex flex-wrap gap-2"><button onclick="loadProfile('devotee')" id="profDevotee" class="px-3 py-1.5 text-xs font-bold rounded-full transition duration-300 uppercase tracking-wider" style="border:1px solid rgba(226,232,240,0.18);color:#e2e8f0;background:linear-gradient(to right,#374151,#6b7280);color:#fff">The Brand Devotee</button><button onclick="loadProfile('romantic')" id="profRomantic" class="px-3 py-1.5 text-xs font-bold rounded-full transition duration-300 uppercase tracking-wider" style="border:1px solid rgba(226,232,240,0.18);color:#e2e8f0;">The Romantic</button><button onclick="loadProfile('gifter')" id="profGifter" class="px-3 py-1.5 text-xs font-bold rounded-full transition duration-300 uppercase tracking-wider" style="border:1px solid rgba(226,232,240,0.18);color:#e2e8f0;">The Gift-Seeker</button></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 rounded-xl" style="background:rgba(2,4,8,0.80);border:1px solid rgba(226,232,240,0.18)">
+                <div class="md:col-span-4 pr-6" style="border-right:1px solid rgba(226,232,240,0.18)">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div id="simAvatar" class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(226,232,240,0.06);border:1px solid rgba(226,232,240,0.18);color:#e2e8f0">
+                            <i class="fa-feather text-lg"></i>
+                        </div>
+                        <div>
+                            <span id="simName" class="text-sm font-semibold text-white block">The Brand Devotee</span>
+                            <span id="simTag" class="text-[10px] uppercase tracking-wider" style="color:#e2e8f0">Loves Heritage</span>
+                        </div>
+                    </div>
+                    <p id="simDesc" class="text-xs text-white/60 font-light leading-relaxed">This guest wears the Swan with pride. They value the brand's 125+ year history and see the Swan as a definitive symbol of their personal alignment with Swarovski's legacy.</p>
+                </div>
+                <div class="md:col-span-8 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] tracking-widest uppercase font-semibold block mb-2" style="color:#e2e8f0"><i class="fa-solid fa-comments mr-1.5"></i>Recommended Opening Icebreaker</span>
+                        <blockquote id="simQuote" class="text-sm font-serif italic text-white/95 pl-4 py-1 leading-relaxed" style="border-left:2px solid #e2e8f0">"The Swan is our most iconic signature — it captures everything Swarovski stands for: graceful movement, transformation, and radiant light, now in its most powerful form."</blockquote>
+                    </div>
+                    <div class="mt-4 pt-4" style="border-top:1px solid rgba(226,232,240,0.18)">
+                        <span class="text-white/40 block text-[10px] uppercase">Crucial Selling Angle:</span>
+                        <span id="simKey" class="text-white/80 text-xs">Brand authenticity, heritage legacy storytelling, and the collector appeal of the limited mixed-metal black edition of an iconic symbol.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-1 gc p-6 rounded-xl flex flex-col justify-between">
+                <div>
+                    <h3 class="font-serif text-base mb-2" style="color:#e2e8f0"><i class="fa-solid fa-paper-plane mr-2"></i>Your Rehearsal Input</h3>
+                    <p class="text-xs text-white/50 font-light mb-4 leading-relaxed">Share your best moment communicating the Swan's heritage and the dramatic impact of the black mixed-metal edition during a guest walk.</p>
+                </div>
+                <div class="space-y-3">
+                    <textarea id="feedbackInput" placeholder="What storytelling cue worked best during your walk today?" class="w-full h-24 rounded-lg p-3 text-xs text-white focus:outline-none transition" style="background:rgba(2,4,8,0.80);border:1px solid rgba(226,232,240,0.18)"></textarea>
+                    <button onclick="submitFeedback()" class="w-full py-2 text-xs tracking-wider uppercase rounded-lg transition duration-300" style="background:rgba(226,232,240,0.06);color:#e2e8f0;border:1px solid rgba(226,232,240,0.18)">Post Tip</button>
+                </div>
+            </div>
+            <div class="md:col-span-2 gc p-6 rounded-xl">
+                <div class="flex items-center justify-between pb-2 mb-4" style="border-bottom:1px solid rgba(226,232,240,0.12)">
+                    <h3 class="font-serif text-base text-white"><i class="fa-solid fa-comments mr-2"></i>Recent Team Insights</h3>
+                    <span class="text-[9px] px-2 py-0.5 rounded uppercase font-semibold" style="background:rgba(226,232,240,0.06);color:#e2e8f0;border:1px solid rgba(226,232,240,0.18)">Swan Feed</span>
+                </div>
+                <div id="feedbackList" class="space-y-3 max-h-[220px] overflow-y-auto pr-2">
+                    <div class="bg-white/5 p-3 rounded-lg text-xs" style="border:1px solid rgba(226,232,240,0.18)">
+                        <div class="flex justify-between items-center mb-1"><span class="font-semibold text-white">Sarah L. (Brand Advocate)</span><span class="text-[9px] text-white/40">2 hours ago</span></div>
+                        <p class="text-white/70 font-light leading-relaxed">Focusing on the Swan as "Grace Reborn" resonates hugely with anniversary shoppers. The black edition appeals especially to guests who want emotional power combined with fashion-forward edge.</p>
+                    </div>
+                    <div class="bg-white/5 p-3 rounded-lg text-xs" style="border:1px solid rgba(226,232,240,0.18)">
+                        <div class="flex justify-between items-center mb-1"><span class="font-semibold text-white">James K. (Senior Consultant)</span><span class="text-[9px] text-white/40">Yesterday</span></div>
+                        <p class="text-white/70 font-light leading-relaxed">I hold the pendant in the spotlight for a few seconds before handing it over. The moment guests see the black crystals ignite with reflected light is consistently the deciding moment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="max-w-6xl mx-auto mt-12 pt-8 text-center text-white/30 text-[10px] uppercase tracking-widest font-semibold relative z-10" style="border-top:1px solid rgba(226,232,240,0.12)">
+        © 2026 Swarovski Retail Project | Swan Collection Presentation
+    </footer>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-500 flex items-center space-x-3 px-5 py-3.5 rounded-xl shadow-2xl max-w-sm ga">
+        <span id="toastIcon" class="text-lg" style="color:#e2e8f0"><i class="fa-solid fa-circle-check"></i></span>
+        <span id="toastMsg" class="text-xs font-light tracking-wide text-white"></span>
+    </div>
+
+    <script>
+        const hotspots = {    1: {title:"Jet-Black Pavé Crystal Construction",text:"The Swan pendant's body is fully pavé-set with jet-black crystals — a dramatic departure from classic white versions. Each crystal is precision-cut and individually set to follow the organic contours of the swan form. The black crystals create an extraordinary depth effect: from a distance the swan reads as a bold silhouette; up close it reveals a densely layered universe of faceted brilliance. Ask guests to look closely to experience this two-layer visual magic."},
+    2: {title:"Mixed-Metal Finish Architecture",text:"The mixed-metal finish combines contrasting tones — pairing dark oxidised metal with bright polished accents — to create a chiaroscuro effect unique to this edition. This intentional contrast mirrors the Swan's dual nature as both a symbol of pure grace and powerful transformation. Draw attention to how the bright metal rim frames the black crystal body, creating a natural visual hierarchy that draws the eye inward to the crystalline detail."},
+    3: {title:"The Iconic Swan Silhouette",text:"The Swan silhouette used in Swarovski jewelry is one of the most recognised symbols in luxury fashion. Its curved neck and wing profile have been refined over decades to achieve the perfect balance between naturalistic grace and abstract elegance. In this pendant, the silhouette is rendered at a scale that allows the full sculptural complexity of the form to be appreciated. Guide guests to observe how the neck curve flows into the wing spread — a single uninterrupted line of crystal-set metal."}};
+        const profiles  = {    devotee: {name:"The Brand Devotee",tag:"Loves Heritage",desc:"This guest wears the Swan with pride. They value the brand's 125+ year history and see the Swan as a definitive symbol of their personal alignment with Swarovski's legacy.",quote:"The Swan is our most iconic signature — it captures everything Swarovski stands for: graceful movement, transformation, and radiant light, now in its most powerful form.",key:"Brand authenticity, heritage legacy storytelling, and the collector appeal of the limited mixed-metal black edition of an iconic symbol.",icon:"fa-feather"},
+    romantic: {name:"The Romantic",tag:"Loves Graceful Design",desc:"This guest is drawn to the poetic beauty of the Swan's form and the emotional resonance of the swan as a universal symbol of grace and transformation.",quote:"The Swan is a beautiful symbol of grace and transformation. This black edition carries a special emotional weight — it is the swan at its most mysteriously beautiful.",key:"Poetic symbolism, graceful sculptural aesthetics, and the emotional depth of the swan motif in its most dramatic colour expression.",icon:"fa-heart"},
+    gifter: {name:"The Gift-Seeker",tag:"Loves Symbolic Gifts",desc:"They are looking for a gift that conveys deep meaning. The Swan — as a universal symbol of grace, loyalty, and transformation — is a timeless, narratively rich choice.",quote:"The Swan is a gift of pure grace. Because it carries 125+ years of Swarovski heritage, it speaks for itself — a timeless gesture for someone truly extraordinary.",key:"Timeless gifting power, rich symbolic heritage, and the iconic status that makes this Swan an immediately recognisable gesture of deep appreciation.",icon:"fa-gift"}};
+        const pKeys     = ['devotee','romantic','gifter'];
+
+        function handleImageError(img){img.src='https://placehold.co/900x1200/111/fff?text=Swan';document.getElementById('imgErr').classList.remove('hidden');}
+
+        function toggleMode(mode){
+            const bc=document.getElementById('btnClient'),ba=document.getElementById('btnAdvisor'),cc=document.getElementById('clientContent'),ac=document.getElementById('advisorContent');
+            const on='background:linear-gradient(to right,#374151,#6b7280);color:#fff';
+            if(mode==='client'){bc.setAttribute('style',on);ba.removeAttribute('style');cc.classList.remove('hidden');ac.classList.add('hidden')}
+            else{ba.setAttribute('style',on);bc.removeAttribute('style');ac.classList.remove('hidden');cc.classList.add('hidden')}
+        }
+
+        function showToast(msg,ok){
+            const t=document.getElementById('toast');
+            document.getElementById('toastMsg').innerText=msg;
+            document.getElementById('toastIcon').innerHTML=ok?'<i class="fa-solid fa-circle-check"></i>':'<i class="fa-solid fa-triangle-exclamation" style="color:#f43f5e"></i>';
+            t.classList.remove('translate-y-10','opacity-0','pointer-events-none');t.classList.add('translate-y-0','opacity-100');
+            setTimeout(()=>{t.classList.add('translate-y-10','opacity-0','pointer-events-none');t.classList.remove('translate-y-0','opacity-100')},4500);
+        }
+
+        function showHotspot(id){
+            toggleMode('advisor');
+            const p=document.getElementById('hsPanel');
+            p.classList.add('scale-95');
+            setTimeout(()=>{document.getElementById('hsTitle').innerText=hotspots[id].title;document.getElementById('hsText').innerText=hotspots[id].text;p.classList.remove('scale-95')},150);
+        }
+
+        function loadProfile(pId){
+            pKeys.forEach(k=>{
+                const btn=document.getElementById('prof'+k.charAt(0).toUpperCase()+k.slice(1));
+                if(btn) btn.setAttribute('style',k===pId?'background:linear-gradient(to right,#374151,#6b7280);color:#fff;border:1px solid rgba(226,232,240,0.18)':'border:1px solid rgba(226,232,240,0.18);color:#e2e8f0');
+            });
+            const d=profiles[pId];
+            document.getElementById('simName').innerText=d.name;
+            document.getElementById('simTag').innerText=d.tag;
+            document.getElementById('simDesc').innerText=d.desc;
+            document.getElementById('simQuote').innerText=d.quote;
+            document.getElementById('simKey').innerText=d.key;
+            document.getElementById('simAvatar').innerHTML='<i class="fa-solid '+d.icon+' text-lg"></i>';
+        }
+
+        function logRehearsal(){showToast('Wonderful! Your Swan walkthrough has been logged. Ready to carry the heritage of Swarovski\'s most iconic emblem to every guest!',true);}
+
+        function submitFeedback(){
+            const inp=document.getElementById('feedbackInput');
+            if(!inp.value.trim()){showToast('Please type an insight first.',false);return;}
+            const list=document.getElementById('feedbackList');
+            const div=document.createElement('div');
+            div.className='bg-white/5 p-3 rounded-lg text-xs';
+            div.style='border:1px solid rgba(226,232,240,0.18)';
+            div.innerHTML='<div class="flex justify-between items-center mb-1"><span class="font-semibold" style="color:#e2e8f0">Your Tip (Just Now)</span><span class="text-[9px] text-white/40">Just now</span></div><p class="text-white/80 font-light leading-relaxed">'+inp.value+'</p>';
+            list.insertBefore(div,list.firstChild);inp.value='';
+            showToast('Insight posted to the Swan team feed!',true);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarovski Mesmera – Interactive Design Concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#04020f',
+                        brandNavy: '#0e0626',
+                        brandAccent: '#c4b5fd',
+                        brandAccentHover: '#a78bfa',
+                        brandDeep: '#7c3aed',
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: radial-gradient(circle at 50% 20%, #1a0a3b 0%, #04020f 65%, #000000 100%);
+            color: #ede9fe;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        .crystal-glow-1 { background: radial-gradient(circle, rgba(139,92,246,0.18) 0%, rgba(4,2,15,0) 70%); }
+        .crystal-glow-2 { background: radial-gradient(circle, rgba(196,181,253,0.10) 0%, rgba(4,2,15,0) 70%); }
+        .glass-card {
+            background: rgba(14, 6, 38, 0.70);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        .glass-card-accent {
+            background: rgba(30, 10, 60, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.35);
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .sparkle-star { animation: twinkle 3s infinite ease-in-out; }
+        @keyframes pulse-violet {
+            0% { transform: scale(0.9); opacity: 1; box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); }
+            70% { transform: scale(1.15); opacity: 0.5; box-shadow: 0 0 0 14px rgba(139, 92, 246, 0); }
+            100% { transform: scale(0.9); opacity: 1; box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+        }
+        .hotspot-pulse { animation: pulse-violet 2.5s infinite; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #04020f; }
+        ::-webkit-scrollbar-thumb { background: #1e0a4e; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
+    </style>
+</head>
+<body class="min-h-screen relative pb-12">
+ 
+    <div class="absolute top-0 left-0 w-full h-[600px] crystal-glow-1 pointer-events-none z-0"></div>
+    <div class="absolute bottom-0 right-0 w-full h-[700px] crystal-glow-2 pointer-events-none z-0"></div>
+ 
+    <div class="sparkle-star absolute text-violet-300 opacity-60 text-lg pointer-events-none z-0" style="top: 10%; left: 7%;">✦</div>
+    <div class="sparkle-star absolute text-purple-200 opacity-40 text-2xl pointer-events-none z-0" style="top: 20%; right: 13%; animation-delay: 1s;">✦</div>
+    <div class="sparkle-star absolute text-white opacity-50 text-sm pointer-events-none z-0" style="top: 45%; left: 17%; animation-delay: 1.5s;">✧</div>
+    <div class="sparkle-star absolute text-violet-100 opacity-70 text-md pointer-events-none z-0" style="top: 75%; right: 8%; animation-delay: 2s;">✦</div>
+    <div class="sparkle-star absolute text-purple-300 opacity-50 text-xl pointer-events-none z-0" style="top: 88%; left: 12%; animation-delay: 0.5s;">✧</div>
+ 
+    <header class="w-full py-6 px-8 flex justify-between items-center border-b border-violet-500/10 relative z-10 glass-card">
+        <a href="index.html" class="flex items-center space-x-3 text-white/70 hover:text-brandAccentHover transition duration-300">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+            <span class="text-xs uppercase tracking-widest font-semibold">All Collections</span>
+        </a>
+        <div class="text-center">
+            <div class="text-[9px] tracking-[6px] text-violet-300 uppercase font-bold">Swarovski Universe</div>
+            <div class="font-serif text-xl tracking-[3px] font-medium text-white flex items-center justify-center gap-2">
+                THE WONDER WALK <span class="text-xs bg-violet-500/20 text-violet-300 px-2.5 py-0.5 rounded-full font-sans tracking-wide border border-violet-500/20">Mesmera Collection</span>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <span class="text-[10px] uppercase tracking-wider font-semibold text-violet-200 bg-violet-500/15 border border-violet-500/20 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-gem mr-1 text-violet-300 animate-pulse"></i> Campaign June 2026
+            </span>
+        </div>
+    </header>
+ 
+    <div class="max-w-6xl mx-auto mt-8 px-4 flex justify-center relative z-10">
+        <div class="bg-brandNavy/90 p-1.5 rounded-full border border-violet-500/20 flex space-x-1 shadow-2xl">
+            <button id="btnClientMode" onclick="toggleMode('client')" class="px-6 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-gradient-to-r from-violet-700 to-purple-600 text-white shadow-lg">
+                <i class="fa-solid fa-eye mr-2"></i>Client Mode (Experience)
+            </button>
+            <button id="btnAdvisorMode" onclick="toggleMode('advisor')" class="px-6 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 text-white/60 hover:text-white">
+                <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Advisor Mode (Training)
+            </button>
+        </div>
+    </div>
+ 
+    <main class="max-w-6xl mx-auto mt-10 px-4 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+ 
+            <div class="lg:col-span-7 flex flex-col justify-between">
+                <div class="mb-6">
+                    <div class="text-violet-300 text-xs uppercase tracking-[6px] font-bold mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-sparkles"></i> Designed by Giovanna Engelbert
+                    </div>
+                    <h1 class="font-serif text-4xl lg:text-5xl text-white font-light tracking-wide leading-tight">
+                        MESMERA <span class="font-sans font-light text-xl text-violet-200 block mt-1">Sculptural Allure: The Art of Dramatic Sparkle</span>
+                    </h1>
+                    <p class="text-violet-100/60 text-sm mt-3 font-light max-w-xl leading-relaxed">
+                        Mesmera is where bold geometry meets timeless elegance. Oversized crystals and sculptural prong-set structures define this collection — crafted for the modern muse who commands attention. It is the evolution of glamour, refined through an avant-garde lens.
+                    </p>
+                </div>
+ 
+                <div class="relative w-full aspect-[3/4] max-h-[640px] rounded-2xl overflow-hidden border border-violet-500/20 shadow-2xl glass-card flex items-center justify-center p-0">
+                    <img id="mainVisual" src="data:image/avif;base64,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"
+                         alt="Swarovski Mesmera Necklace – Mixed Cuts, White, 18K Gold Finish"
+                         class="w-full h-full object-contain bg-[#08021a] opacity-90 hover:opacity-100 transition duration-500"
+                         onerror="handleImageError(this)">
+ 
+                    <div id="imageLoadErrorHelper" class="hidden absolute inset-0 flex flex-col items-center justify-center bg-[#04020f]/95 p-6 text-center border border-violet-500/30 rounded-2xl z-20">
+                        <i class="fa-solid fa-gem text-violet-300 text-5xl mb-4 animate-pulse"></i>
+                        <h4 class="font-serif text-lg text-white mb-2">Image Loading</h4>
+                        <p class="text-[11px] text-white/60 font-light max-w-xs mb-6 leading-relaxed">Select the Mesmera necklace image to display it here.</p>
+                        <button onclick="triggerFileSelect()" class="px-5 py-2.5 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold text-[10px] uppercase tracking-wider rounded-lg shadow-lg hover:scale-105 transition duration-300">
+                            <i class="fa-solid fa-upload mr-2"></i>Select Local File
+                        </button>
+                    </div>
+                    <input type="file" id="localImageInput" class="hidden" accept="image/*" onchange="handleLocalImage(event)">
+ 
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#04020f]/80 via-transparent to-[#04020f]/30 pointer-events-none"></div>
+                    <div class="absolute inset-3 border border-violet-400/20 rounded-lg pointer-events-none"></div>
+ 
+                    <div class="absolute top-[22%] left-[38%] group">
+                        <button onclick="showHotspot(1)" class="w-8 h-8 rounded-full bg-violet-400 text-white flex items-center justify-center font-bold text-xs shadow-lg shadow-violet-500/40 border border-white/40 hotspot-pulse hover:scale-110 transition duration-300">1</button>
+                        <span class="absolute left-10 top-1/2 -translate-y-1/2 bg-[#04020f]/95 border border-violet-500/20 px-3 py-1 rounded text-[10px] tracking-widest uppercase font-semibold text-violet-300 opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none whitespace-nowrap">Mixed Cuts</span>
+                    </div>
+                    <div class="absolute top-[50%] left-[30%] group">
+                        <button onclick="showHotspot(2)" class="w-8 h-8 rounded-full bg-violet-400 text-white flex items-center justify-center font-bold text-xs shadow-lg shadow-violet-500/40 border border-white/40 hotspot-pulse hover:scale-110 transition duration-300">2</button>
+                        <span class="absolute left-10 top-1/2 -translate-y-1/2 bg-[#04020f]/95 border border-violet-500/20 px-3 py-1 rounded text-[10px] tracking-widest uppercase font-semibold text-violet-300 opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none whitespace-nowrap">18K Gold Finish</span>
+                    </div>
+                    <div class="absolute bottom-[25%] right-[20%] group">
+                        <button onclick="showHotspot(3)" class="w-8 h-8 rounded-full bg-violet-400 text-white flex items-center justify-center font-bold text-xs shadow-lg shadow-violet-500/40 border border-white/40 hotspot-pulse hover:scale-110 transition duration-300">3</button>
+                        <span class="absolute right-10 top-1/2 -translate-y-1/2 bg-[#04020f]/95 border border-violet-500/20 px-3 py-1 rounded text-[10px] tracking-widest uppercase font-semibold text-violet-300 opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none whitespace-nowrap">Prong Structure</span>
+                    </div>
+ 
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-brandNavy/95 border border-violet-500/20 px-4 py-2 rounded-full flex items-center space-x-2 shadow-xl">
+                        <span class="inline-block w-2 h-2 rounded-full bg-violet-400 animate-ping"></span>
+                        <span class="text-xs font-semibold text-white/80 tracking-wide">Click numbers to explore Mesmera's design secrets</span>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="lg:col-span-5 flex flex-col justify-between">
+                <div id="clientContent" class="glass-card p-8 rounded-2xl border border-violet-500/10 h-full flex flex-col justify-between transition-all duration-500">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-violet-500/15 pb-4 mb-6">
+                            <span class="font-serif text-lg tracking-wide text-violet-300">Style Manifesto: Bold Elegance</span>
+                            <span class="text-[10px] font-bold text-white/40 tracking-widest uppercase bg-violet-500/10 px-2 py-0.5 rounded">Design Ethos</span>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="font-serif text-base text-white font-medium mb-2">Wearable Sculpture</h3>
+                                <p class="text-white/70 text-xs font-light leading-relaxed">Mesmera pieces aren't just jewelry — they are sculptural accents for the body. By pairing large-scale crystals with refined prong structures, we create an illusion of weightless light that anchors any ensemble with effortless, unapologetic magnetism.</p>
+                            </div>
+                            <div class="border-t border-violet-500/10 pt-4">
+                                <h3 class="font-serif text-base text-white font-medium mb-2">The Allure of Oversized</h3>
+                                <p class="text-white/70 text-xs font-light leading-relaxed">Size doesn't sacrifice elegance — it amplifies it. The clean prong setting allows the crystal to become the absolute focal point, refracting light from every angle. Mesmera is for those who view style as a bold, personal statement.</p>
+                            </div>
+                            <div class="bg-violet-500/5 p-4 rounded-xl border border-violet-500/10">
+                                <span class="text-violet-300 text-xs uppercase tracking-wider font-semibold block mb-1">
+                                    <i class="fa-solid fa-gem mr-2"></i>Signature Mesmera Traits
+                                </span>
+                                <span class="text-xs text-white/80 font-light block leading-relaxed">Sculptural statement forms, large-scale Swarovski crystals, prong-set structural architecture, and mixed cuts including octagon and round — all balanced between avant-garde design and timeless brilliance.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-violet-500/10 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase text-white/40 block">Collection</span>
+                            <span class="text-sm font-serif text-white">Mesmera · 18K Gold Finish</span>
+                        </div>
+                        <span class="px-4 py-2 border border-violet-400/30 text-violet-300 hover:bg-violet-400 hover:text-white transition duration-300 text-xs uppercase tracking-widest rounded-md cursor-default">Avant-Garde</span>
+                    </div>
+                </div>
+ 
+                <div id="advisorContent" class="hidden glass-card-accent p-8 rounded-2xl border border-violet-500/30 h-full flex flex-col justify-between transition-all duration-500">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-violet-500/20 pb-4 mb-6">
+                            <span class="font-serif text-lg tracking-wide text-violet-200 flex items-center">
+                                <i class="fa-solid fa-graduation-cap mr-2.5"></i>The Mesmera Flow Guide
+                            </span>
+                            <span class="text-[10px] font-bold text-violet-300 tracking-widest uppercase bg-violet-500/20 px-2 py-0.5 rounded border border-violet-500/30">Staff Training</span>
+                        </div>
+                        <div id="hotspotDetailsPanel" class="bg-brandDark/90 p-4 rounded-xl border border-violet-500/20 mb-6 transition-all duration-300">
+                            <div class="flex items-center space-x-2 text-violet-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                                <i class="fa-solid fa-star animate-pulse"></i>
+                                <span id="hotspotDetailTitle">Select a hotspot on the visual (1, 2, or 3)</span>
+                            </div>
+                            <p id="hotspotDetailText" class="text-xs text-white/70 font-light leading-relaxed">
+                                Expert insights about Mesmera's crystal cuts, gold finish, and prong architecture will load here to fuel your store tour script.
+                            </p>
+                        </div>
+                        <div class="space-y-5">
+                            <div>
+                                <h3 class="font-serif text-base text-violet-300 font-medium mb-1.5"><i class="fa-solid fa-comment-dots mr-2"></i>Storytelling Cue: "Wearable Architecture"</h3>
+                                <p class="text-white/80 text-xs font-light leading-relaxed">
+                                    <em>"Mesmera is designed for presence. These oversized mixed-cut crystals are essentially light sculptures for the body — they don't just accessorize, they define the outfit. Invite your guest to touch the prong structure to feel the level of precision involved."</em>
+                                </p>
+                            </div>
+                            <div class="border-t border-violet-500/10 pt-4">
+                                <h3 class="font-serif text-base text-violet-300 font-medium mb-1.5"><i class="fa-solid fa-user-group mr-2"></i>Rehearsal Prompt: "Dramatic Impact"</h3>
+                                <ul class="list-none space-y-2 text-xs font-light text-white/80">
+                                    <li class="flex items-start"><i class="fa-solid fa-chevron-right text-violet-400 mr-2 mt-1"></i><span><strong>How to present:</strong> Place an oversized Mesmera piece near the guest's neckline. Let them feel the crystal's weight and watch how it catches the store lighting.</span></li>
+                                    <li class="flex items-start"><i class="fa-solid fa-chevron-right text-violet-400 mr-2 mt-1"></i><span><strong>Immersive Question:</strong> <em>"Do you prefer the striking clarity of the mixed cuts, or does the drama of the oversized form itself draw you in?"</em></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-violet-500/20 flex items-center justify-between text-xs">
+                        <span class="text-white/60">Practiced your Mesmera walkthrough today?</span>
+                        <button onclick="logRehearsal()" class="px-3.5 py-1.5 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white font-bold tracking-wider uppercase rounded text-[10px] transition duration-300 shadow-md">
+                            <i class="fa-solid fa-check mr-1.5"></i>Log Rehearsal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <section class="mt-12 glass-card p-8 rounded-2xl border border-violet-500/10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-violet-500/10 pb-4 mb-6">
+                <div>
+                    <h2 class="font-serif text-2xl text-white font-light tracking-wide">Customer Persona Simulator (Mesmera Walk)</h2>
+                    <p class="text-xs text-white/40 mt-1">Select a customer profile to reveal the optimal storytelling scenario for this sculptural statement collection.</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex flex-wrap gap-2">
+                    <button onclick="loadProfile('maximalist')" id="profMaximalist" class="px-3 py-1.5 bg-gradient-to-r from-violet-700 to-purple-600 text-white text-xs font-bold rounded-full border border-violet-300/20 transition duration-300 uppercase tracking-wider">The Bold Maximalist</button>
+                    <button onclick="loadProfile('evening')" id="profEvening" class="px-3 py-1.5 bg-white/5 text-white/60 text-xs font-semibold rounded-full border border-white/10 transition duration-300 uppercase tracking-wider hover:text-white">The Red Carpet Diva</button>
+                    <button onclick="loadProfile('modern')" id="profModern" class="px-3 py-1.5 bg-white/5 text-white/60 text-xs font-semibold rounded-full border border-white/10 transition duration-300 uppercase tracking-wider hover:text-white">The Modern Avant-Garde</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 bg-[#04020f]/80 p-6 rounded-xl border border-violet-500/10">
+                <div class="md:col-span-4 border-r border-violet-500/10 pr-6">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div id="simAvatar" class="w-12 h-12 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center text-violet-300">
+                            <i class="fa-solid fa-gem text-lg"></i>
+                        </div>
+                        <div>
+                            <span id="simName" class="text-sm font-semibold text-white block">The Bold Maximalist</span>
+                            <span id="simTag" class="text-[10px] text-violet-300 uppercase tracking-wider">Loves Impact</span>
+                        </div>
+                    </div>
+                    <p id="simDesc" class="text-xs text-white/60 font-light leading-relaxed">This client isn't afraid to shine. They want pieces that command space and reflect their unapologetic, maximalist lifestyle.</p>
+                </div>
+                <div class="md:col-span-8 flex flex-col justify-between">
+                    <div>
+                        <span class="text-violet-300 text-[10px] tracking-widest uppercase font-semibold block mb-2"><i class="fa-solid fa-comments mr-1.5"></i>Recommended Opening Icebreaker</span>
+                        <blockquote id="simQuote" class="text-sm font-serif italic text-white/95 border-l-2 border-violet-400 pl-4 py-1 leading-relaxed">
+                            "Mesmera is designed for presence. These oversized crystals are essentially light sculptures for the body — they don't just accessorize, they define the outfit."
+                        </blockquote>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-violet-500/10 flex flex-wrap gap-4 text-xs">
+                        <div>
+                            <span class="text-white/40 block text-[10px] uppercase">Crucial Selling Angle:</span>
+                            <span id="simKey" class="text-white/80">Sculptural, high-impact crystal volume, avant-garde design aesthetics, and the confidence of dramatic statement pieces.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <section class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-1 glass-card p-6 rounded-xl border border-violet-500/10 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-serif text-base text-violet-300 mb-2"><i class="fa-solid fa-paper-plane mr-2"></i>Your Rehearsal Input</h3>
+                    <p class="text-xs text-white/50 font-light mb-4 leading-relaxed">Share successful pitches, customer reactions, or creative styling suggestions from your Mesmera walk rehearsal.</p>
+                </div>
+                <div class="space-y-3">
+                    <textarea id="feedbackInput" placeholder="What storytelling cue worked best during your walk today?" class="w-full h-24 bg-[#04020f]/80 border border-violet-500/10 rounded-lg p-3 text-xs text-white placeholder-violet-300/25 focus:outline-none focus:border-violet-500/40 transition"></textarea>
+                    <button onclick="submitFeedback()" class="w-full py-2 bg-violet-500/10 hover:bg-violet-600 text-white font-semibold text-xs tracking-wider uppercase rounded-lg border border-violet-500/25 transition duration-300">Post Tip</button>
+                </div>
+            </div>
+            <div class="md:col-span-2 glass-card p-6 rounded-xl border border-violet-500/10">
+                <div class="flex items-center justify-between border-b border-violet-500/10 pb-2 mb-4">
+                    <h3 class="font-serif text-base text-white"><i class="fa-solid fa-comments mr-2"></i>Recent Team Insights</h3>
+                    <span class="text-[9px] bg-violet-500/20 border border-violet-500/35 text-violet-200 px-2 py-0.5 rounded uppercase font-semibold">Mesmera Feed</span>
+                </div>
+                <div id="feedbackList" class="space-y-3 max-h-[220px] overflow-y-auto pr-2">
+                    <div class="bg-white/5 p-3 rounded-lg border border-violet-500/5 text-xs">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-semibold text-white">Alexandra M. (Brand Advocate)</span>
+                            <span class="text-[9px] text-white/40">2 hours ago</span>
+                        </div>
+                        <p class="text-white/70 font-light leading-relaxed">Clients love the 'sculptural' language! It makes the oversized pieces feel like art rather than just large jewelry. Using the word "wearable architecture" got an immediate reaction.</p>
+                    </div>
+                    <div class="bg-white/5 p-3 rounded-lg border border-violet-500/5 text-xs">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-semibold text-white">James R. (Sales Consultant)</span>
+                            <span class="text-[9px] text-white/40">Yesterday</span>
+                        </div>
+                        <p class="text-white/70 font-light leading-relaxed">Holding the Mesmera necklace up to the light before placing it on the client was a game changer. They could immediately see the mixed-cut brilliance for themselves.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+ 
+    <footer class="max-w-6xl mx-auto mt-12 pt-8 border-t border-violet-500/10 text-center text-white/30 text-[10px] relative z-10 uppercase tracking-widest font-semibold">
+        © 2026 Swarovski Retail Project | Mesmera Collection Presentation
+    </footer>
+ 
+    <div id="customToast" class="fixed bottom-6 right-6 z-50 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-500 ease-out flex items-center space-x-3 bg-brandNavy/95 border border-violet-400/40 text-white px-5 py-3.5 rounded-xl shadow-2xl max-w-sm">
+        <span id="toastIcon" class="text-violet-300 text-lg"><i class="fa-solid fa-circle-check"></i></span>
+        <span id="toastMessage" class="text-xs font-light tracking-wide leading-relaxed"></span>
+    </div>
+ 
+    <script>
+        function handleImageError(img) {
+            img.src = "https://placehold.co/900x1200/1a0a3b/c4b5fd?text=Mesmera+Necklace";
+            document.getElementById('imageLoadErrorHelper').classList.remove('hidden');
+        }
+        function triggerFileSelect() { document.getElementById('localImageInput').click(); }
+        function handleLocalImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('mainVisual').src = e.target.result;
+                    document.getElementById('imageLoadErrorHelper').classList.add('hidden');
+                    showNotification("Image mounted successfully!", true);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+ 
+        const hotspots = {
+            1: { title: "Mixed-Cut Crystal Architecture", text: "The Mesmera necklace features a deliberate mix of octagon and round cuts, each faceted to maximize light dispersion from multiple angles simultaneously. This combination creates the signature 'mesmerizing' effect — an ever-shifting play of brilliance that changes with every movement. Guide your client to observe how each cut responds differently to light." },
+            2: { title: "18K Gold Finish Setting", text: "Every Mesmera piece is finished in a warm 18K gold plating that perfectly complements the white crystal brilliance. The gold setting provides structural elegance while keeping the visual focus on the crystals themselves. This premium finish elevates Mesmera beyond fashion jewelry into collectible fine fashion territory — a key talking point for discerning clients." },
+            3: { title: "Architectural Prong Structure", text: "Mesmera's prong-set design is its most distinctive engineering feature. Unlike pavé or bezel settings that conceal part of the crystal, the prong structure suspends each crystal in open air — maximizing light entry from below as well as above. This is what creates the signature 'floating crystal' illusion that defines the collection." }
+        };
+ 
+        const profiles = {
+            maximalist: { name: "The Bold Maximalist", tag: "Loves Impact", desc: "This client isn't afraid to shine. They want pieces that command space and reflect their unapologetic, maximalist lifestyle.", quote: "\"Mesmera is designed for presence. These oversized mixed-cut crystals are essentially light sculptures for the body — they don't just accessorize, they define the outfit.\"", key: "Sculptural, high-impact crystal volume, avant-garde design aesthetics, and the confidence of dramatic statement pieces.", icon: "fa-gem" },
+            evening: { name: "The Red Carpet Diva", tag: "Loves Dramatic Finesse", desc: "Seeks the ultimate showstopper for events. They are drawn to the sparkle scale and the luxurious gold-finish feeling of the pieces.", quote: "\"When you wear Mesmera, you aren't just attending the event — you're the focal point. The mixed-cut design captures light from every angle, ensuring you're the most mesmerizing presence in the room.\"", key: "High-glamour resonance, red-carpet ready scale, and the alluring interplay of large-scale mixed-cut crystal light refraction.", icon: "fa-champagne-glasses" },
+            modern: { name: "The Modern Avant-Garde", tag: "Loves Avant-Garde Design", desc: "A creative who loves pushing boundaries. They appreciate the intersection of architecture and jewelry design.", quote: "\"Mesmera feels like modern architecture. The prong structure is minimal yet purposeful, letting the raw beauty of the oversized crystal take center stage — refined, precise, and completely cutting-edge.\"", key: "Architecture-inspired prong design, modern mixed-cut structure, and the intellectual appeal of avant-garde maximalism.", icon: "fa-palette" }
+        };
+ 
+        function toggleMode(mode) {
+            const btnClient = document.getElementById('btnClientMode');
+            const btnAdvisor = document.getElementById('btnAdvisorMode');
+            const clientContent = document.getElementById('clientContent');
+            const advisorContent = document.getElementById('advisorContent');
+            if (mode === 'client') {
+                btnClient.className = "px-6 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-gradient-to-r from-violet-700 to-purple-600 text-white shadow-lg";
+                btnAdvisor.className = "px-6 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 text-white/60 hover:text-white";
+                clientContent.classList.remove('hidden');
+                advisorContent.classList.add('hidden');
+            } else {
+                btnAdvisor.className = "px-6 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-gradient-to-r from-violet-700 to-purple-600 text-white shadow-lg";
+                btnClient.className = "px-6 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 text-white/60 hover:text-white";
+                advisorContent.classList.remove('hidden');
+                clientContent.classList.add('hidden');
+            }
+        }
+ 
+        function showNotification(message, isSuccess = true) {
+            const toast = document.getElementById('customToast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+            toastMessage.innerText = message;
+            if (isSuccess) {
+                toastIcon.innerHTML = `<i class="fa-solid fa-circle-check text-violet-300"></i>`;
+                toast.style.borderColor = 'rgba(139, 92, 246, 0.4)';
+            } else {
+                toastIcon.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-500"></i>`;
+                toast.style.borderColor = 'rgba(244, 63, 94, 0.4)';
+            }
+            toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+            }, 4500);
+        }
+ 
+        function showHotspot(id) {
+            toggleMode('advisor');
+            const panel = document.getElementById('hotspotDetailsPanel');
+            panel.classList.add('scale-95');
+            setTimeout(() => {
+                document.getElementById('hotspotDetailTitle').innerText = hotspots[id].title;
+                document.getElementById('hotspotDetailText').innerText = hotspots[id].text;
+                panel.classList.remove('scale-95');
+                panel.style.borderColor = 'rgba(139, 92, 246, 0.5)';
+            }, 150);
+        }
+ 
+        function loadProfile(pId) {
+            ['maximalist','evening','modern'].forEach(k => {
+                const btn = document.getElementById('prof' + k.charAt(0).toUpperCase() + k.slice(1));
+                if (btn) {
+                    btn.className = k === pId
+                        ? "px-3 py-1.5 bg-gradient-to-r from-violet-700 to-purple-600 text-white text-xs font-bold rounded-full border border-violet-300/20 transition duration-300 uppercase tracking-wider"
+                        : "px-3 py-1.5 bg-white/5 text-white/60 text-xs font-semibold rounded-full border border-white/10 transition duration-300 uppercase tracking-wider hover:text-white";
+                }
+            });
+            const data = profiles[pId];
+            document.getElementById('simName').innerText = data.name;
+            document.getElementById('simTag').innerText = data.tag;
+            document.getElementById('simDesc').innerText = data.desc;
+            document.getElementById('simQuote').innerText = data.quote;
+            document.getElementById('simKey').innerText = data.key;
+            document.getElementById('simAvatar').innerHTML = `<i class="fa-solid ${data.icon} text-lg"></i>`;
+        }
+ 
+        function logRehearsal() {
+            showNotification("Wonderful! Your Mesmera rehearsal has been logged. You're ready to mesmerize every guest!", true);
+        }
+ 
+        function submitFeedback() {
+            const input = document.getElementById('feedbackInput');
+            if (input.value.trim() === '') {
+                showNotification("Please type an insight or pitch tip first.", false);
+                return;
+            }
+            const list = document.getElementById('feedbackList');
+            const div = document.createElement('div');
+            div.className = "bg-violet-500/5 p-3 rounded-lg border border-violet-500/15 text-xs animate-pulse";
+            div.innerHTML = `<div class="flex justify-between items-center mb-1"><span class="font-semibold text-violet-300">Your Tip (Just Now)</span><span class="text-[9px] text-white/40">Just now</span></div><p class="text-white/80 font-light leading-relaxed">${input.value}</p>`;
+            list.insertBefore(div, list.firstChild);
+            input.value = '';
+            showNotification("Insight posted to the Mesmera team feed!", true);
+        }
+    </script>
+</body>
+</html>

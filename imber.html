@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarovski Imber - Interactive Collection Showcase</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+ 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#030208',
+                        brandBlue: '#0f172a',
+                        brandWater: '#7dd3fc',
+                        glassBg: 'rgba(15, 23, 42, 0.75)',
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+ 
+    <style>
+        body { background-color: #030208; color: #f0f9ff; font-family: 'Montserrat', sans-serif; min-height: 100vh; }
+        .glass-card { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(125, 211, 252, 0.1); }
+        .water-gradient { background: radial-gradient(circle at 50% 50%, #0c4a6e 0%, #030208 100%); }
+        .ripple-pulse { animation: ripple-imber 4s infinite ease-in-out; }
+        @keyframes ripple-imber {
+            0% { transform: scale(0.9); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0; }
+            100% { transform: scale(0.9); opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="pb-12 text-blue-50">
+ 
+    <header class="w-full py-5 px-8 flex justify-between items-center border-b border-blue-900/30 bg-[#030208]/90 backdrop-blur-md sticky top-0 z-50">
+        <a href="index.html" class="flex items-center space-x-2 text-white/60 hover:text-white transition uppercase text-[10px] font-bold tracking-[0.2em]">
+            <i class="fa-solid fa-chevron-left text-xs"></i> All Collections
+        </a>
+        <div class="text-center">
+            <div class="text-[9px] tracking-[0.3em] text-blue-400 uppercase font-bold">SWAROVSKI UNIVERSE</div>
+            <div class="font-serif text-lg tracking-[0.2em] text-white flex items-center gap-3">
+                THE WONDER WALK 
+                <span class="text-[10px] bg-blue-900/40 text-blue-200 px-3 py-1 rounded-full border border-blue-500/20 tracking-wider font-sans uppercase">Imber Collection</span>
+            </div>
+        </div>
+        <div class="px-4 py-1.5 bg-blue-900/20 border border-blue-500/20 rounded-full flex items-center gap-2">
+            <i class="fa-solid fa-droplet text-[10px] text-blue-400"></i>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-white/80">Campaign June 2026</span>
+        </div>
+    </header>
+ 
+    <div class="max-w-4xl mx-auto mt-8 px-4 flex justify-center">
+        <div class="bg-[#030208]/95 p-1 rounded-full border border-blue-500/20 flex shadow-2xl">
+            <button id="btnClientMode" onclick="toggleMode('client')" class="px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 bg-gradient-to-r from-blue-900 via-blue-600 to-cyan-500 text-white shadow-lg">
+                <i class="fa-solid fa-eye mr-2"></i>Client Mode (Experience)
+            </button>
+            <button id="btnAdvisorMode" onclick="toggleMode('advisor')" class="px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 text-white/50 hover:text-white">
+                <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Advisor Mode (Training)
+            </button>
+        </div>
+    </div>
+ 
+    <main class="max-w-6xl mx-auto mt-10 px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-7 flex flex-col gap-6">
+                <div>
+                    <div class="text-blue-400 text-[10px] uppercase tracking-[0.3em] font-bold mb-2">Designed by Giovanna Engelbert</div>
+                    <h1 class="font-serif text-4xl text-white font-light tracking-wide">IMBER</h1>
+                    <p class="text-blue-200/60 font-light text-sm mt-1">Frozen Motion: The Tranquil Ripple</p>
+                    <p class="text-blue-100/60 font-light text-xs mt-4 leading-relaxed max-w-lg">A minimalist celebration of movement. Imber presents crystals as if caught in a state of grace—floating, suspended, and perfectly serene. Drawing inspiration from the delicate rhythm of rain, this collection turns vertical crystal drops into symbols of quiet luxury.</p>
+                </div>
+                
+                <div class="rounded-2xl border border-blue-500/20 min-h-[400px] relative shadow-inner overflow-hidden">
+                    <div class="absolute top-6 left-6 z-20 bg-brandDark/80 border border-blue-500/20 px-3 py-1.5 rounded-md text-[9px] uppercase tracking-[4px] text-blue-300">
+                        Tranquil Water Concept
+                    </div>
+                    <!-- Campaign Photo -->
+                    <img src="data:image/avif;base64,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" 
+                         alt="Swarovski Imber Collection" 
+                         class="w-full h-full object-cover object-center min-h-[400px]" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-brandDark/60 via-transparent to-brandDark/20 pointer-events-none"></div>
+                    <div id="hotspotContainer" class="absolute inset-0 z-30">
+                        <button onclick="showHotspot(1)" class="absolute top-[30%] left-[30%] w-8 h-8 rounded-full bg-brandDark text-blue-300 border-2 border-blue-400 flex items-center justify-center font-bold text-xs shadow-2xl ripple-pulse">1</button>
+                        <button onclick="showHotspot(2)" class="absolute bottom-[35%] right-[30%] w-8 h-8 rounded-full bg-brandDark text-blue-300 border-2 border-blue-400 flex items-center justify-center font-bold text-xs shadow-2xl ripple-pulse">2</button>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="lg:col-span-5">
+                <div id="clientContent" class="glass-card p-8 rounded-2xl h-full border border-blue-500/10">
+                    <div class="flex items-center justify-between border-b border-blue-500/10 pb-4 mb-6">
+                        <span class="font-serif text-lg tracking-wide text-white">Style Manifesto: Minimalist Grace</span>
+                        <span class="text-[10px] font-bold text-blue-300/60 tracking-widest uppercase bg-blue-900/20 px-2 py-0.5 rounded">Design Ethos</span>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-blue-100/70 text-xs font-light leading-relaxed">Imber discards the unnecessary to embrace the essential. Each piece acts as a vertical line of light, mimicking the elegant fall of a raindrop. It is a study in vertical balance, tranquility, and the purity of crystal forms when stripped of excessive mounting.</p>
+                        <div class="bg-blue-900/10 p-4 rounded-xl border border-blue-500/10">
+                            <span class="text-blue-300 text-xs uppercase tracking-wider font-semibold block mb-1">Signature Imber Traits</span>
+                            <span class="text-xs text-blue-100/80 font-light block leading-relaxed">Floating crystal droplets, vertical fluid chain silhouettes, subtle ripple-etched textures, and minimalist metal settings that prioritize light dispersion over structure.</span>
+                        </div>
+                    </div>
+                </div>
+ 
+                <div id="advisorContent" class="hidden glass-card p-8 rounded-2xl h-full border border-blue-500/20">
+                    <div class="flex items-center justify-between border-b border-blue-500/10 pb-4 mb-6">
+                        <span class="font-serif text-lg tracking-wide text-white flex items-center"><i class="fa-solid fa-graduation-cap mr-2.5 text-blue-300"></i>The Tranquil Flow Guide</span>
+                        <span class="text-[10px] font-bold text-blue-300/60 tracking-widest uppercase bg-blue-900/20 px-2 py-0.5 rounded">Staff Script</span>
+                    </div>
+                    <div id="trainingLoader" class="bg-black/40 p-4 rounded-lg border border-blue-500/25 mb-6">
+                        <div class="flex items-center space-x-2 text-white text-xs font-bold uppercase tracking-wider mb-2"><i class="fa-solid fa-droplet text-blue-300"></i><span id="guideTitle">SELECT COORDINATES (1, 2) ON THE DISPLAY</span></div>
+                        <p id="guideText" class="text-xs text-blue-100/60 font-light leading-relaxed">Tap on the numbered markers to load technical specifications for the Imber display or styling narratives for clients seeking everyday serenity.</p>
+                    </div>
+                    <!-- New expanded training section -->
+                    <div class="mt-6 pt-6 border-t border-blue-500/10">
+                        <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-4 border-l-2 border-blue-500 pl-2">Mastering the Imber Narrative</h4>
+                        <ul class="space-y-4 text-xs text-blue-100/60 font-light leading-relaxed">
+                            <li><strong class="text-blue-300 block">Technical Precision:</strong> Emphasize the "frozen rain" aesthetic. Explain how the crystals are calibrated to maintain a perfect vertical axis, allowing for consistent light dispersion regardless of movement.</li>
+                            <li><strong class="text-blue-300 block">The Ripple Effect:</strong> Mention the subtle ripple-etched textures. These are meant to evoke the calm feeling of raindrops hitting a still, reflective pond surface.</li>
+                            <li><strong class="text-blue-300 block">Everyday Minimalist Stacking:</strong> Recommend layering Imber chains with thinner, metallic-toned chains to add depth to the look without overpowering the "tranquil" mood.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <section class="mt-12 glass-card p-8 rounded-2xl border border-blue-500/10">
+            <div class="flex flex-col md:flex-row md:items-start justify-between border-b border-blue-500/10 pb-6 mb-6">
+                <div>
+                    <h2 class="font-serif text-2xl text-white font-light tracking-wide">CUSTOMER PERSONA SIMULATOR (IMBER WALK)</h2>
+                    <p class="text-xs text-blue-200/40 mt-1">Simulate store guest profiles to train your staff on effective storytelling angles.</p>
+                </div>
+                <div id="personaBtns" class="mt-4 md:mt-0 flex flex-wrap gap-2">
+                    <button onclick="loadProfile('minimalist')" id="btnMinimalist" class="px-4 py-2 bg-gradient-to-r from-blue-900 via-blue-700 to-cyan-600 text-white text-[10px] font-bold rounded-full border border-blue-500/30 uppercase tracking-wider transition-all">THE QUIET MINIMALIST</button>
+                    <button onclick="loadProfile('layering')" id="btnLayering" class="px-4 py-2 bg-white/5 text-blue-100/60 text-[10px] font-bold rounded-full border border-white/10 hover:border-white/20 uppercase tracking-wider transition-all">THE LAYERING ARTIST</button>
+                    <button onclick="loadProfile('tranquil')" id="btnTranquil" class="px-4 py-2 bg-white/5 text-blue-100/60 text-[10px] font-bold rounded-full border border-white/10 hover:border-white/20 uppercase tracking-wider transition-all">THE TRANQUIL COLLECTOR</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 bg-[#030208]/60 p-6 rounded-2xl border border-blue-500/10 shadow-inner">
+                <div class="md:col-span-4 border-r border-blue-500/10 pr-6">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div id="simAvatar" class="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-300">
+                            <i class="fa-solid fa-wind text-lg"></i>
+                        </div>
+                        <div>
+                            <span id="simName" class="text-sm font-semibold text-white block">The Quiet Minimalist</span>
+                            <span id="simTag" class="text-[10px] text-blue-300 uppercase tracking-wider">LOVES SERENITY</span>
+                        </div>
+                    </div>
+                    <p id="simDesc" class="text-xs text-blue-100/60 font-light leading-relaxed">This client seeks everyday serenity and pieces that feel like personal, quiet talismans. They appreciate understated beauty over loud declarations.</p>
+                </div>
+                <div class="md:col-span-8 flex flex-col justify-between">
+                    <div>
+                        <span class="text-blue-300 text-[10px] tracking-widest uppercase font-semibold block mb-3 flex items-center"><i class="fa-solid fa-comments mr-2"></i>RECOMMENDED CONVERSATION OPENER</span>
+                        <blockquote id="simQuote" class="text-sm font-serif italic text-white/95 border-l-2 border-blue-500 pl-4 py-1 leading-relaxed">"Imber is all about 'frozen motion'. These vertical drops have the quietest, most elegant movement—they’re designed to be a personal piece of calm."</blockquote>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-white/5">
+                        <span class="text-white/40 block text-[10px] uppercase mb-1">CRUCIAL SELLING POINT:</span>
+                        <span id="simKey" class="text-xs text-white/80 leading-relaxed font-light">Lightweight wearability, water-inspired fluidity, and the subtle serenity of vertical, droplet-style geometry.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+            <div class="glass-card p-8 rounded-2xl border border-blue-500/10">
+                <div class="flex items-center space-x-3 mb-6"><i class="fa-solid fa-paper-plane text-blue-300"></i><h3 class="font-serif text-lg tracking-wider">POST-REHEARSAL TIP</h3></div>
+                <p class="text-blue-100/60 text-xs mb-4">Share how you describe the 'frozen rain' effect or any styling tips for stacking Imber with existing delicate chains.</p>
+                <textarea id="feedbackInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-xs focus:ring-1 focus:ring-blue-500 text-white" rows="3" placeholder="Share your Imber styling cue..."></textarea>
+                <button onclick="submitFeedback()" class="mt-4 px-6 py-2 bg-blue-600 text-white text-[10px] font-bold rounded-lg uppercase tracking-widest hover:bg-blue-700 transition">Post Tip</button>
+            </div>
+            <div class="glass-card p-8 rounded-2xl border border-blue-500/10">
+                <div class="flex items-center justify-between mb-6"><div class="flex items-center space-x-3"><i class="fa-solid fa-comments text-blue-300"></i><h3 class="font-serif text-lg tracking-wider">RECENT TEAM INSIGHTS</h3></div><span class="px-2 py-1 bg-blue-500/20 text-[9px] rounded uppercase tracking-wider">Imber Feed</span></div>
+                <div id="feedbackList" class="space-y-4">
+                    <div class="bg-white/5 p-3 rounded-lg border border-white/5 text-xs">Clients are loving the "frozen rain" imagery. It helps them visualize the fluidity of the chain lengths!</div>
+                </div>
+            </div>
+        </section>
+    </main>
+ 
+    <script>
+        const profiles = {
+            minimalist: { name: "The Quiet Minimalist", tag: "LOVES SERENITY", desc: "This client seeks everyday serenity and pieces that feel like personal, quiet talismans. They appreciate understated beauty over loud declarations.", quote: "\"Imber is all about 'frozen motion'. These vertical drops have the quietest, most elegant movement—they’re designed to be a personal piece of calm.\"", key: "Lightweight wearability, water-inspired fluidity, and the subtle serenity of vertical, droplet-style geometry.", icon: "fa-wind" },
+            layering: { name: "The Layering Artist", tag: "LOVES DELICATE DROPS", desc: "A creative who loves to mix and match. They see the Imber chain drops as perfect vertical accents to build a complex, layered neck look.", quote: "\"Notice how these droplets sit at different levels? You can stack them to create your own cascading vertical rhythm. It’s like wearing a personalized rainfall.\"", key: "Adjustable chain lengths, mix-and-match versatility, and building dynamic vertical neck layers.", icon: "fa-layer-group" },
+            tranquil: { name: "The Tranquil Collector", tag: "LOVES SOFT SHAPES", desc: "Someone drawn to the collection’s water-inspired narrative. They value the soft, soothing geometric forms that mimic nature.", quote: "\"These pieces aren't just jewelry; they're captures of movement. The way the crystal catches light feels like sunlight hitting a quiet, still pond.\"", key: "Nature-inspired storytelling, soft soothing geometry, and emotional resonance of water-themed jewelry.", icon: "fa-droplet" }
+        };
+ 
+        function loadProfile(pId) {
+            const btns = ['minimalist', 'layering', 'tranquil'];
+            btns.forEach(k => {
+                const btn = document.getElementById('btn' + k.charAt(0).toUpperCase() + k.slice(1));
+                btn.className = (k === pId) 
+                    ? "px-4 py-2 bg-gradient-to-r from-blue-900 via-blue-700 to-cyan-600 text-white text-[10px] font-bold rounded-full border border-blue-500/30 uppercase tracking-wider transition-all"
+                    : "px-4 py-2 bg-white/5 text-blue-100/60 text-[10px] font-bold rounded-full border border-white/10 hover:border-white/20 uppercase tracking-wider transition-all";
+            });
+            const data = profiles[pId];
+            document.getElementById('simName').innerText = data.name;
+            document.getElementById('simTag').innerText = data.tag;
+            document.getElementById('simDesc').innerText = data.desc;
+            document.getElementById('simQuote').innerText = data.quote;
+            document.getElementById('simKey').innerText = data.key;
+            document.getElementById('simAvatar').innerHTML = `<i class="fa-solid ${data.icon} text-lg"></i>`;
+        }
+ 
+        function toggleMode(mode) {
+            const btnClient = document.getElementById('btnClientMode');
+            const btnAdvisor = document.getElementById('btnAdvisorMode');
+            const clientContent = document.getElementById('clientContent');
+            const advisorContent = document.getElementById('advisorContent');
+            if (mode === 'client') {
+                btnClient.className = "px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 bg-gradient-to-r from-blue-900 via-blue-600 to-cyan-500 text-white shadow-lg";
+                btnAdvisor.className = "px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 text-white/50 hover:text-white";
+                advisorContent.classList.add('hidden');
+                clientContent.classList.remove('hidden');
+            } else {
+                btnAdvisor.className = "px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 bg-gradient-to-r from-blue-900 via-blue-600 to-cyan-500 text-white shadow-lg";
+                btnClient.className = "px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 text-white/50 hover:text-white";
+                advisorContent.classList.remove('hidden');
+                clientContent.classList.add('hidden');
+            }
+        }
+ 
+        function showHotspot(id) {
+            toggleMode('advisor');
+            const title = document.getElementById('guideTitle');
+            const text = document.getElementById('guideText');
+            if(id === 1) {
+                title.innerText = "KEY STORYTELLING CUE: 'FROZEN RAIN'";
+                text.innerText = "'Encourage your guest to hold the chain against their skin. Describe how the Imber crystals represent a moment of 'frozen motion'—like individual raindrops captured in a crystalline state of grace. It's about quiet elegance, not noise.'";
+            } else {
+                title.innerText = "ACTIVE REHEARSAL PROMPT: 'THE RIPPLE EFFECT'";
+                text.innerHTML = "<strong>Staff Action:</strong> Place the pendant against a flat, reflective surface. Ask the guest to notice the play of light. <br><br><strong>Engaging Question:</strong> 'Do you prefer the simplicity of the single droplet, or are you drawn to the rhythm of the stacked vertical chains?'";
+            }
+        }
+ 
+        function submitFeedback() {
+            const val = document.getElementById('feedbackInput').value;
+            if(val) {
+                const div = document.createElement('div');
+                div.className = "bg-white/5 p-3 rounded-lg border border-white/5 text-xs animate-fadeIn";
+                div.innerText = val;
+                document.getElementById('feedbackList').appendChild(div);
+                document.getElementById('feedbackInput').value = '';
+            }
+        }
+    </script>
+</body>
+</html>

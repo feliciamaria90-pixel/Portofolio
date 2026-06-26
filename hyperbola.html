@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarovski Hyperbola - Interactive Design Concept</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons & Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+ 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#070708',       /* Deep Obsidian Space */
+                        brandZinc: '#111113',       /* Cool Zinc Dark */
+                        brandSilver: '#cbd5e1',     /* Polished Rhodium Chrome */
+                        brandPlatinum: '#f8fafc',   /* Stardust Light */
+                        brandGold: '#e5c158',       /* Pure Yellow Gold */
+                        brandRoseGold: '#e0a98c',   /* Shimmering Rose Gold */
+                        glassBg: 'rgba(7, 7, 8, 0.85)',
+                        glassBorder: 'rgba(255, 255, 255, 0.08)',
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+ 
+    <style>
+        /* Premium Architectural Star Map Theme with Mixed Metal Shimmer */
+        body {
+            background-color: #070708;
+            background-image: 
+                radial-gradient(circle at 50% 20%, rgba(229, 193, 88, 0.04) 0%, transparent 60%),
+                radial-gradient(circle at 10% 80%, rgba(203, 213, 225, 0.03) 0%, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+ 
+        /* Glassmorphism Cards with Ultra-Fine Silver and Gold Borders */
+        .glass-card {
+            background: rgba(12, 12, 14, 0.8);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(229, 193, 88, 0.12);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+        }
+ 
+        .glass-card-hyperbola {
+            background: rgba(22, 19, 15, 0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(229, 193, 88, 0.25);
+        }
+ 
+        /* Architectural structural backdrop lines */
+        .grid-line {
+            stroke: rgba(255, 255, 255, 0.03);
+            stroke-width: 0.8;
+        }
+ 
+        /* Shimmering parametric curve animations */
+        @keyframes sweep {
+            0% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+        .parametric-curve {
+            stroke-dasharray: 600;
+            stroke-dashoffset: 600;
+            animation: sweep 10s infinite linear;
+        }
+ 
+        /* Infinite rotating loop to mimic structured mathematics of crystals */
+        @keyframes pulse-gold {
+            0%, 100% {
+                transform: scale(0.95);
+                opacity: 0.85;
+                box-shadow: 0 0 0 0 rgba(229, 193, 88, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+                box-shadow: 0 0 0 10px rgba(229, 193, 88, 0);
+            }
+        }
+        .hotspot-pulse {
+            animation: pulse-gold 3s infinite ease-in-out;
+        }
+ 
+        /* Micro-interactions for Repeating Squares */
+        .multiplier-square {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .multiplier-square:hover {
+            transform: translateY(-4px);
+            border-color: rgba(229, 193, 88, 0.35);
+            box-shadow: 0 12px 24px -10px rgba(229, 193, 88, 0.2);
+        }
+        .multiplier-square.active {
+            border-color: rgba(229, 193, 88, 0.8);
+            background: rgba(229, 193, 88, 0.03);
+            box-shadow: inset 0 0 15px rgba(229, 193, 88, 0.05);
+        }
+ 
+        /* Tiny luxury scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070708;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1c1917;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e5c158;
+        }
+    </style>
+</head>
+<body class="pb-12">
+ 
+    <!-- HEADER -->
+    <header class="w-full py-6 px-8 flex justify-between items-center border-b border-zinc-800 relative z-10 glass-card">
+        <a href="index.html" class="flex items-center space-x-3 text-white/50 hover:text-white transition duration-300">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+            <span class="text-xs uppercase tracking-widest font-semibold">All Collections</span>
+        </a>
+        <div class="text-center">
+            <div class="text-[9px] tracking-[6px] text-brandGold uppercase font-bold">Swarovski Universe</div>
+            <div class="font-serif text-xl tracking-[3px] font-medium text-white flex items-center justify-center gap-2">
+                THE WONDER WALK <span class="text-xs bg-brandGold/10 text-brandGold border border-brandGold/30 px-2.5 py-0.5 rounded-full font-sans tracking-wide">Hyperbola</span>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="hidden sm:inline-block text-[10px] uppercase tracking-wider font-semibold text-brandGold bg-brandGold/10 border border-brandGold/20 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-calculator mr-1.5 text-brandGold animate-pulse"></i> Campaign June 2026
+            </span>
+        </div>
+    </header>
+ 
+    <!-- Interactive Mode Selector -->
+    <div class="max-w-6xl mx-auto mt-8 px-4 flex justify-center relative z-10">
+        <div class="bg-zinc-950 p-1.5 rounded-full border border-zinc-800 flex space-x-1 shadow-2xl">
+            <button id="btnClientMode" onclick="toggleMode('client')" class="px-6 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 bg-white text-brandDark shadow-lg font-bold">
+                <i class="fa-solid fa-eye mr-2"></i>Client Mode (Experience)
+            </button>
+            <button id="btnAdvisorMode" onclick="toggleMode('advisor')" class="px-6 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 text-white/50 hover:text-white">
+                <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Advisor Mode (Training)
+            </button>
+        </div>
+    </div>
+ 
+    <!-- MAIN GRID CONTAINER -->
+    <main class="max-w-6xl mx-auto mt-10 px-4 relative z-10">
+        
+        <!-- TWO-PART LAYOUT SECTION -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
+            
+            <!-- LEFT COLUMN: THE ARCHITECTURAL PORTRAIT (3:4 ASPECT PORTRAIT) -->
+            <div class="lg:col-span-6 flex flex-col justify-between">
+                <div>
+                    <div class="text-brandGold text-xs uppercase tracking-[6px] font-bold mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-line text-[10px]"></i> Parametric Wave Form
+                    </div>
+                    <h1 class="font-serif text-4xl lg:text-5xl text-white font-light tracking-wide leading-tight mb-4">
+                        HYPERBOLA <span class="font-sans font-light text-xl text-zinc-400 block mt-1">Mixed-Metal Multi-Collar Architecture</span>
+                    </h1>
+                </div>
+ 
+                <div class="relative w-full aspect-[3/4] max-h-[640px] rounded-2xl overflow-hidden glass-card flex flex-col items-center justify-between p-8 border border-brandGold/20">
+                    <!-- Title Badge on left stage -->
+                    <div class="absolute top-6 left-6 z-20 bg-brandDark/90 border border-brandGold/20 px-3 py-1.5 rounded-md text-[9px] uppercase tracking-[4px] text-brandGold font-bold">
+                        Mixed Metal Collar Profile
+                    </div>
+ 
+                    <!-- Campaign Photo -->
+                    <div class="absolute inset-0 z-0">
+                        <img src="data:image/avif;base64,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" 
+                             alt="Swarovski Hyperbola Collection" 
+                             class="w-full h-full object-cover object-center" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-brandDark/60 via-transparent to-brandDark/20 pointer-events-none"></div>
+                    </div>
+ 
+                    <!-- Hotspots mapped specifically to collar construction points -->
+                    <div id="hotspotContainer" class="absolute inset-0 z-20">
+                        <div class="absolute" style="top: 48%; left: 49%;">
+                            <button onclick="showHotspot(1)" id="hyperNode1" class="w-8 h-8 rounded-full bg-brandDark text-brandGold border-2 border-brandGold flex items-center justify-center font-bold text-xs shadow-2xl hotspot-pulse transition duration-300 hover:scale-125">1</button>
+                            <span class="absolute left-10 top-1/2 -translate-y-1/2 bg-brandDark border border-brandGold/20 px-2 py-0.5 rounded text-[9px] uppercase tracking-wider text-brandGold whitespace-nowrap opacity-0 md:group-hover:opacity-100 transition duration-300 pointer-events-none">Mixed-Metal Lattice</span>
+                        </div>
+                    </div>
+ 
+                    <!-- Interactive Guide Banner -->
+                    <div id="interactionHint" class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-brandDark/95 border border-brandGold/20 px-5 py-2.5 rounded-full flex items-center space-x-2.5 shadow-xl z-20">
+                        <span class="inline-block w-2 h-2 rounded-full bg-brandGold animate-ping"></span>
+                        <span class="text-xs font-semibold text-white/95 tracking-wide">Select hotspots to deconstruct lines</span>
+                    </div>
+ 
+                </div>
+            </div>
+ 
+            <!-- RIGHT COLUMN: REPEATING PRODUCT SQUARES (MULTIPLICATION MATRIX) -->
+            <div class="lg:col-span-6 flex flex-col justify-between">
+                <div>
+                    <div class="text-brandGold text-xs uppercase tracking-[6px] font-bold mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-shapes text-[10px]"></i> Multiplication Theory
+                    </div>
+                    <h2 class="font-serif text-3xl lg:text-4xl text-white font-light tracking-wide leading-tight mb-4">
+                        PARAMETRIC MATRIX <span class="font-sans font-light text-xl text-zinc-400 block mt-1">Multiplication of the Crystal Monad</span>
+                    </h2>
+                </div>
+ 
+                <!-- 2x2 Grid representing crystal repeating units from single elements to cuffs -->
+                <div class="grid grid-cols-2 gap-4 w-full h-full">
+                    
+                    <!-- Product Square 1: The Monad (Single Element) -->
+                    <div id="multSquare1" onclick="selectMultiplicity(1)" class="multiplier-square active flex flex-col items-center justify-center p-6 rounded-xl glass-card cursor-pointer">
+                        <div class="text-[9px] uppercase tracking-widest text-brandGold mb-2 font-bold">1. The Monad</div>
+                        <div class="w-16 h-16 relative flex items-center justify-center mb-2">
+                            <!-- Dual-plated Octagon Solitaire with gold border and silver prong points -->
+                            <polygon points="15,5 35,5 45,15 45,35 35,45 15,45 5,35 5,15" fill="none" stroke="#e5c158" stroke-width="2.5" class="w-10 h-10 transform scale-110" />
+                            <polygon points="15,5 35,5 45,15 45,35 35,45 15,45 5,35 5,15" fill="none" stroke="#cbd5e1" stroke-width="1" class="w-10 h-10 transform scale-95 opacity-60" />
+                            <circle cx="25" cy="25" r="3" fill="white" class="animate-pulse" />
+                        </div>
+                        <span class="text-[10px] font-serif text-white uppercase tracking-wider text-center">Gold-Prong Facet Unit</span>
+                    </div>
+ 
+                    <!-- Product Square 2: The Array (Linear Multiplication) -->
+                    <div id="multSquare2" onclick="selectMultiplicity(2)" class="multiplier-square flex flex-col items-center justify-center p-6 rounded-xl glass-card cursor-pointer">
+                        <div class="text-[9px] uppercase tracking-widest text-zinc-400 mb-2 font-bold">2. The Array</div>
+                        <div class="w-24 h-12 flex justify-between items-center mb-4 px-2">
+                            <!-- Aligned crystal units in series: Alternating Gold and Silver -->
+                            <div class="w-4 h-4 border border-brandGold transform rotate-45 flex items-center justify-center"><div class="w-1 h-1 bg-white"></div></div>
+                            <div class="w-4 h-4 border border-brandSilver transform rotate-45 flex items-center justify-center"><div class="w-1 h-1 bg-white"></div></div>
+                            <div class="w-4 h-4 border border-brandGold transform rotate-45 flex items-center justify-center"><div class="w-1 h-1 bg-white"></div></div>
+                            <div class="w-4 h-4 border border-brandSilver transform rotate-45 flex items-center justify-center"><div class="w-1 h-1 bg-white"></div></div>
+                            <div class="w-4 h-4 border border-brandGold transform rotate-45 flex items-center justify-center"><div class="w-1 h-1 bg-white"></div></div>
+                        </div>
+                        <span class="text-[10px] font-serif text-white uppercase tracking-wider text-center">Dual-Plated Chain Strand</span>
+                    </div>
+ 
+                    <!-- Product Square 3: The Matrix (Grid Layering) -->
+                    <div id="multSquare3" onclick="selectMultiplicity(3)" class="multiplier-square flex flex-col items-center justify-center p-6 rounded-xl glass-card cursor-pointer">
+                        <div class="text-[9px] uppercase tracking-widest text-zinc-400 mb-2 font-bold">3. The Matrix</div>
+                        <div class="grid grid-cols-4 gap-2.5 mb-4">
+                            <!-- Mixed Metal 2D grid matrix -->
+                            <div class="w-3.5 h-3.5 border border-brandGold bg-zinc-800"></div>
+                            <div class="w-3.5 h-3.5 border border-brandSilver bg-zinc-900"></div>
+                            <div class="w-3.5 h-3.5 border border-brandGold bg-zinc-800"></div>
+                            <div class="w-3.5 h-3.5 border border-brandSilver bg-zinc-900"></div>
+                            <div class="w-3.5 h-3.5 border border-brandSilver bg-zinc-900"></div>
+                            <div class="w-3.5 h-3.5 border border-brandGold bg-zinc-800"></div>
+                            <div class="w-3.5 h-3.5 border border-brandSilver bg-zinc-900"></div>
+                            <div class="w-3.5 h-3.5 border border-brandGold bg-zinc-800"></div>
+                        </div>
+                        <span class="text-[10px] font-serif text-white uppercase tracking-wider text-center">Stacked Multi-Metal Cuff</span>
+                    </div>
+ 
+                    <!-- Product Square 4: The Hyperbola (Scaled Waves) -->
+                    <div id="multSquare4" onclick="selectMultiplicity(4)" class="multiplier-square flex flex-col items-center justify-center p-6 rounded-xl glass-card cursor-pointer">
+                        <div class="text-[9px] uppercase tracking-widest text-brandGold mb-2 font-bold">4. The Hyperbola</div>
+                        <div class="w-16 h-16 relative flex items-center justify-center mb-2">
+                            <!-- Curved parametric gold and silver representation -->
+                            <svg class="w-12 h-12" viewBox="0 0 50 50">
+                                <path d="M5,45 Q25,5 45,45" fill="none" stroke="#e5c158" stroke-width="3" />
+                                <path d="M10,45 Q25,15 40,45" fill="none" stroke="#cbd5e1" stroke-width="2" />
+                                <path d="M15,45 Q25,25 35,45" fill="none" stroke="#e5c158" stroke-width="1" />
+                            </svg>
+                        </div>
+                        <span class="text-[10px] font-serif text-white uppercase tracking-wider text-center">Bi-Plated Fluid Collar</span>
+                    </div>
+ 
+                </div>
+            </div>
+ 
+        </section>
+ 
+        <!-- DETAILS & INSTRUCTIONS PANEL -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
+            
+            <div class="lg:col-span-12">
+                <!-- 1. MODE: CLIENT EXPERIENCE VIEW -->
+                <div id="clientContent" class="glass-card p-8 rounded-2xl border border-brandGold/20 flex flex-col justify-between transition-all duration-500">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-zinc-800 pb-4 mb-6">
+                            <span class="font-serif text-lg tracking-wide text-white">Style Manifesto: Structured Bi-Plating</span>
+                            <span class="text-[10px] font-bold text-brandGold tracking-widest uppercase bg-brandGold/10 px-2 py-0.5 rounded">Core Theory</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <h3 class="font-serif text-base text-brandGold font-medium mb-2">Alternating Metal Finishes</h3>
+                                <p class="text-white/70 text-xs font-light leading-relaxed">
+                                    Hyperbola features mixed-metal bands. Yellow gold-plated ribbons are stacked seamlessly with icy rhodium silver layers, creating architectural depth that catches the eye from every coordinate.
+                                </p>
+                            </div>
+ 
+                            <div>
+                                <h3 class="font-serif text-base text-brandGold font-medium mb-2">Mathematical Multiplicity</h3>
+                                <p class="text-white/70 text-xs font-light leading-relaxed">
+                                    A single custom-faceted emerald unit serves as the design genome. Multiplying this base element along curved trajectories yields wide necklaces, complex wrist armor, and layered drop collars.
+                                </p>
+                            </div>
+ 
+                            <div class="bg-white/5 p-4 rounded-xl border border-white/5 flex flex-col justify-between">
+                                <div>
+                                    <span class="text-brandGold text-xs uppercase tracking-wider font-semibold block mb-1">
+                                        <i class="fa-solid fa-shapes mr-2"></i>Hyperbola Traits
+                                    </span>
+                                    <span class="text-xs text-white/80 font-light block leading-relaxed">
+                                        Linear crystal arrays, stacked dual-plated bands, bold mathematical curves, rhodium and gold finishes, and structured wearable geometry.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ 
+                <!-- 2. MODE: ADVISOR TRAINING VIEW (WONDER WALK CUES) -->
+                <div id="advisorContent" class="hidden glass-card-hyperbola p-8 rounded-2xl border border-brandGold/20 flex flex-col justify-between transition-all duration-500">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                            <span class="font-serif text-lg tracking-wide text-white flex items-center">
+                                <i class="fa-solid fa-graduation-cap mr-2.5 text-brandGold"></i>The Wonder Walk Training Guide
+                            </span>
+                            <span class="text-[10px] font-bold text-brandGold tracking-widest uppercase bg-brandGold/10 px-2 py-0.5 rounded border border-brandGold/20">Staff Script</span>
+                        </div>
+ 
+                        <!-- Mini Multiplier Detail Loader -->
+                        <div id="hotspotDetailsPanel" class="bg-brandDark/95 p-4 rounded-xl border border-zinc-800 mb-6 transition-all duration-300">
+                            <div class="flex items-center space-x-2 text-white text-xs font-semibold uppercase tracking-wider mb-2">
+                                <i class="fa-solid fa-square-root-variable animate-pulse text-brandGold"></i>
+                                <span id="hotspotDetailTitle">Select a crystal tier from the right column</span>
+                            </div>
+                            <p id="hotspotDetailText" class="text-xs text-white/60 font-light leading-relaxed">
+                                Click on any of the four repeating multiplier squares in the right column to inspect how we train staff to explain parametric scaling, mixed plating, and crystal repetition to store guests.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-5">
+                            <div>
+                                <h3 class="font-serif text-base text-brandGold font-medium mb-1.5"><i class="fa-solid fa-comment-dots mr-2"></i>Key Storytelling Cue: "Mixed-Metal Geometry"</h3>
+                                <p class="text-white/85 text-xs font-light leading-relaxed">
+                                    <em>"Draw the guest's attention to the stunning contrast of finishes. Explain how our gold-plated and rhodium elements interact to bring out the fire in each gemstone. This collection shows that precision math can feel deeply organic and high-fashion."</em>
+                                </p>
+                            </div>
+ 
+                            <div class="border-t border-white/10 pt-4">
+                                <h3 class="font-serif text-base text-brandGold font-medium mb-1.5"><i class="fa-solid fa-user-group mr-2"></i>Active Rehearsal Prompt: "Plating Interplay"</h3>
+                                <ul class="list-none space-y-2 text-xs font-light text-white/80">
+                                    <li class="flex items-start"><i class="fa-solid fa-chevron-right text-brandGold mr-2 mt-1"></i><span><strong>Staff Action:</strong> Shift the collar slightly in gallery lighting to let the alternating gold and silver bands catch the light separately.</span></li>
+                                    <li class="flex items-start"><i class="fa-solid fa-chevron-right text-brandGold mr-2 mt-1"></i><span><strong>Engaging Question:</strong> <em>"This structured design blends gold and rhodium-plated lines beautifully. Do you love the warmth of our yellow-gold highlights, or do you prefer the icy purity of our rhodium elements?"</em></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                        <span class="text-white/60">Practiced your walkthrough today?</span>
+                        <button onclick="logRehearsal()" class="px-3.5 py-1.5 bg-brandGold text-brandDark font-bold tracking-wider uppercase rounded text-[10px] transition duration-300 shadow-md hover:bg-zinc-200">
+                            <i class="fa-solid fa-check mr-1.5"></i>Log Walk Progress
+                        </button>
+                    </div>
+                </div>
+            </div>
+ 
+        </section>
+ 
+        <!-- RETAIL TRAINING SIMULATOR FOR HYPERBOLA -->
+        <section class="mt-12 glass-card p-8 rounded-2xl border border-zinc-800">
+            <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-zinc-800 pb-4 mb-6">
+                <div>
+                    <h2 class="font-serif text-2xl text-white font-light tracking-wide">Customer Persona Simulator (Hyperbola Walk)</h2>
+                    <p class="text-xs text-white/40 mt-1">Simulate store guest profiles to train your staff on explaining complex structures, mixed-metal finishes, and scale.</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex flex-wrap gap-2">
+                    <button onclick="loadProfile('architect')" id="profArchitect" class="px-3 py-1.5 bg-brandGold text-brandDark text-xs font-bold rounded-full border border-brandGold transition duration-300 uppercase tracking-wider">The Avant-Garde Architect</button>
+                    <button onclick="loadProfile('powerhouse')" id="profPowerhouse" class="px-3 py-1.5 bg-white/5 text-white/60 text-xs font-semibold rounded-full border border-white/10 transition duration-300 uppercase tracking-wider hover:text-white">The Red-Carpet Powerhouse</button>
+                    <button onclick="loadProfile('precisionist')" id="profPrecisionist" class="px-3 py-1.5 bg-white/5 text-white/60 text-xs font-semibold rounded-full border border-white/10 transition duration-300 uppercase tracking-wider hover:text-white">The Mathematical Precisionist</button>
+                </div>
+            </div>
+ 
+            <!-- Dynamic Simulator Screen -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 bg-[#050506]/95 p-6 rounded-xl border border-zinc-800">
+                <div class="md:col-span-4 border-r border-zinc-800 pr-6">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div id="simAvatar" class="w-12 h-12 rounded-full bg-brandGold/10 border border-brandGold/20 flex items-center justify-center text-brandGold">
+                            <i class="fa-solid fa-compass text-lg"></i>
+                        </div>
+                        <div>
+                            <span id="simName" class="text-sm font-semibold text-white block">The Avant-Garde Architect</span>
+                            <span id="simTag" class="text-[10px] text-brandGold uppercase tracking-wider">Appreciates Fine Structures</span>
+                        </div>
+                    </div>
+                    <p id="simDesc" class="text-xs text-white/60 font-light leading-relaxed">
+                        This client has a deep background in design and structure. They view jewelry as miniature wearable architecture and appreciate repeating ratios, gold/silver contrast drapes, and calculated curves.
+                    </p>
+                </div>
+ 
+                <div class="md:col-span-8 flex flex-col justify-between">
+                    <div>
+                        <span class="text-brandGold text-[10px] tracking-widest uppercase font-semibold block mb-2"><i class="fa-solid fa-comments mr-1.5"></i>Recommended Conversation Opener</span>
+                        <blockquote id="simQuote" class="text-sm font-serif italic text-white/95 border-l-2 border-brandGold pl-4 py-1 leading-relaxed">
+                            "Hyperbola turns mathematics into high art. Notice how our dual-plated gold and silver bands act as physical layers of shadow and light, multiplying dynamically into a sweeping, structural form."
+                        </blockquote>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/5 flex flex-wrap gap-4 text-xs">
+                        <div>
+                            <span class="text-white/40 block text-[10px] uppercase">Crucial Selling Point:</span>
+                            <span id="simKey" class="text-white/80">Repeating crystal matrices, mixed-metal gold/silver geometry, and structural beauty.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- LIVE STAFF FEEDBACK HUB -->
+        <section class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-1 glass-card p-6 rounded-xl border border-zinc-800 flex flex-col justify-between">
+                <div>
+                    <h3 class="font-serif text-base text-zinc-300 mb-2"><i class="fa-solid fa-paper-plane mr-2"></i>Post-Rehearsal Tip</h3>
+                    <p class="text-xs text-white/50 font-light mb-4 leading-relaxed">Share successful stories or pitch lines that worked during your team's Hyperbola rehearsals to grow our store's training repository!</p>
+                </div>
+                
+                <div class="space-y-3">
+                    <textarea id="feedbackInput" placeholder="What storytelling cue worked best during your walkthrough?" class="w-full h-24 bg-brandDark border border-zinc-800 rounded-lg p-3 text-xs text-white placeholder-white/20 focus:outline-none focus:border-brandGold/40 transition"></textarea>
+                    <button onclick="submitFeedback()" class="w-full py-2 bg-brandGold/10 hover:bg-brandGold hover:text-brandDark text-brandGold font-semibold text-xs tracking-wider uppercase rounded-lg border border-brandGold/25 transition duration-300">Post Tip</button>
+                </div>
+            </div>
+ 
+            <div class="md:col-span-2 glass-card p-6 rounded-xl border border-zinc-800">
+                <div class="flex items-center justify-between border-b border-zinc-800 pb-2 mb-4">
+                    <h3 class="font-serif text-base text-white"><i class="fa-solid fa-comments mr-2"></i>Recent Team Insights (Live Feedback Loop)</h3>
+                    <span class="text-[9px] bg-brandGold/10 border border-brandGold/20 text-brandGold px-2 py-0.5 rounded uppercase font-semibold">Hyperbola Feed</span>
+                </div>
+ 
+                <div id="feedbackList" class="space-y-3 max-h-[220px] overflow-y-auto pr-2">
+                    <div class="bg-white/5 p-3 rounded-lg border border-white/5 text-xs">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-semibold text-white">Audrey H. (Styling Architect)</span>
+                            <span class="text-[9px] text-white/40">10 mins ago</span>
+                        </div>
+                        <p class="text-white/70 font-light leading-relaxed">Guests are completely stunned by the gold and silver mix! Explaining that the massive collar starts from a single crystal on the tray makes the geometry feel personal and fascinating.</p>
+                    </div>
+                    <div class="bg-white/5 p-3 rounded-lg border border-white/5 text-xs">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-semibold text-white">Julian R. (Trainer Specialist)</span>
+                            <span class="text-[9px] text-white/40">Yesterday</span>
+                        </div>
+                        <p class="text-white/70 font-light leading-relaxed">I love pointing out the physical weight-bearing geometry of the collar drapes. When customers feel the seamless movement, they understand the high engineering behind Hyperbola.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+    </main>
+ 
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto mt-12 pt-8 border-t border-zinc-800 text-center text-white/30 text-[10px] relative z-10 uppercase tracking-widest font-semibold">
+        © 2026 Swarovski Retail Project | Hyperbola Campaign June Training Presentation
+    </footer>
+ 
+    <!-- Swarovski Custom Toast -->
+    <div id="customToast" class="fixed bottom-6 right-6 z-50 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-500 ease-out flex items-center space-x-3 bg-brandDark/95 border border-brandGold/30 text-white px-5 py-3.5 rounded-xl shadow-2xl max-w-sm">
+        <span id="toastIcon" class="text-brandGold text-lg"><i class="fa-solid fa-circle-check"></i></span>
+        <span id="toastMessage" class="text-xs font-light tracking-wide leading-relaxed"></span>
+    </div>
+ 
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // High-level details of Hyperbola Collection
+        const hotspots = [
+            { 
+                id: 1, 
+                title: "Rhodium & Yellow Gold Multi-Tiered Collar", 
+                text: "The visual showcases our stunning mixed-metal collar, wrapping alternating structural rows of gold and silver brilliant-cut clear stones into a massive curved harness. It emphasizes linear power, mixed plating, and geometric grace." 
+            }
+        ];
+ 
+        // Specific repeating units coordinates details matching your prompt
+        const multiplicities = {
+            1: {
+                title: "Unit 1: The Mixed-Metal Monad",
+                text: "The fundamental starting unit. A single, custom octagon-cut crystal set inside raw gold-plated prongs and backed by rhodium silver tracks, capturing light in one absolute coordinate point."
+            },
+            2: {
+                title: "Unit 2: The Dual-Plated Array",
+                text: "Multiplication in one dimension. Crystals are repeated linearly side-by-side on alternating gold and silver tracks to form fluid chokers and chains."
+            },
+            3: {
+                title: "Unit 3: The Mixed Matrix Cuff",
+                text: "Multiplication in two dimensions. Stacking alternating silver and gold rows together creates a robust, light-catching mesh fabric ideal for cuffs and bracelets."
+            },
+            4: {
+                title: "Unit 4: The Parametric Hyperbola Wave",
+                text: "The scaled-up architectural form. The gold and silver matrix curves in three dimensions around the collarbone, producing sweeping curves of absolute brilliance."
+            }
+        };
+ 
+        // Client Profiles Data tailored specifically to the bold Hyperbola style
+        const profiles = {
+            architect: {
+                name: "The Avant-Garde Architect",
+                tag: "Appreciates Fine Structures",
+                desc: "This client has a deep background in design and structure. They view jewelry as miniature wearable architecture and appreciate repeating ratios, gold/silver contrast drapes, and calculated curves.",
+                quote: "\"Hyperbola turns mathematics into high art. Notice how our dual-plated gold and silver bands act as physical layers of shadow and light, multiplying dynamically into a sweeping, structural form.\"",
+                key: "Repeating crystal matrices, mixed-metal gold/silver geometry, and structural beauty.",
+                icon: "fa-compass"
+            },
+            powerhouse: {
+                name: "The Red-Carpet Powerhouse",
+                tag: "Sought-After Glamour",
+                desc: "Wants highly structured, dramatic statement pieces that demand attention and project extreme status. Drawn to mixed-metal wide chokers and dense, massive crystal layers.",
+                quote: "\"Wearing this architectural collar is like wrapping yourself in gold and rhodium crystalline armor. It establishes strong, geometric lines that instantly grab the spotlight under any gallery lighting.\"",
+                key: "Dramatic wide profiles, gold and silver tiered structures, intense brilliance density.",
+                icon: "fa-crown"
+            },
+            precisionist: {
+                name: "The Mathematical Precisionist",
+                tag: "Loves Structural Perfection",
+                desc: "A collector who studies gem setting methods, prong details, and the structural integrity of the jewelry. Loves explaining how gold and silver components are engineered.",
+                quote: "\"Observe the calculated spacing between the vertical crystal struts on this multi-tiered mixed collar. Every tier is curved along a hyperbola to maintain perfect tension, securing absolute flexibility.\"",
+                key: "Multi-tiered spacing geometry, gold/silver flex balance under load, intricate prong arrays.",
+                icon: "fa-drafting-compass"
+            }
+        };
+ 
+        // Switch modes: Client (Experience View) vs Advisor (Staff Training)
+        function toggleMode(mode) {
+            const btnClient = document.getElementById('btnClientMode');
+            const btnAdvisor = document.getElementById('btnAdvisorMode');
+            const clientContent = document.getElementById('clientContent');
+            const advisorContent = document.getElementById('advisorContent');
+ 
+            if (mode === 'client') {
+                btnClient.className = "px-6 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-white text-brandDark shadow-lg";
+                btnAdvisor.className = "px-6 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 text-white/50 hover:text-white";
+                clientContent.classList.remove('hidden');
+                advisorContent.classList.add('hidden');
+            } else {
+                btnAdvisor.className = "px-6 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 bg-brandGold text-brandDark shadow-lg";
+                btnClient.className = "px-6 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 text-white/50 hover:text-white";
+                advisorContent.classList.remove('hidden');
+                clientContent.classList.add('hidden');
+            }
+        }
+ 
+        // Custom notification toast
+        function showNotification(message, isSuccess = true) {
+            const toast = document.getElementById('customToast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+ 
+            toastMessage.innerText = message;
+            if (isSuccess) {
+                toastIcon.innerHTML = `<i class="fa-solid fa-circle-check text-brandGold"></i>`;
+                toast.style.borderColor = 'rgba(229, 193, 88, 0.4)';
+            } else {
+                toastIcon.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-500"></i>`;
+                toast.style.borderColor = 'rgba(244, 63, 94, 0.4)';
+            }
+ 
+            // Slide up & fade in
+            toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+ 
+            // Slide down & fade out after 4 seconds
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+            }, 4000);
+        }
+ 
+        // Show specific hotspot details in Advisor View
+        function showHotspot(id) {
+            toggleMode('advisor');
+            
+            const panel = document.getElementById('hotspotDetailsPanel');
+            const title = document.getElementById('hotspotDetailTitle');
+            const text = document.getElementById('hotspotDetailText');
+ 
+            panel.classList.remove('scale-100');
+            panel.classList.add('scale-95');
+ 
+            const spotInfo = hotspots.find(spot => spot.id === id);
+ 
+            if (spotInfo) {
+                setTimeout(() => {
+                    title.innerText = spotInfo.title;
+                    text.innerText = spotInfo.text;
+                    panel.classList.remove('scale-95');
+                    panel.classList.add('scale-100');
+                    panel.style.borderColor = 'rgba(229, 193, 88, 0.4)';
+                }, 150);
+            }
+        }
+ 
+        // Show specific multiplying details when a square in the right col is clicked
+        function selectMultiplicity(id) {
+            toggleMode('advisor');
+            
+            const panel = document.getElementById('hotspotDetailsPanel');
+            const title = document.getElementById('hotspotDetailTitle');
+            const text = document.getElementById('hotspotDetailText');
+ 
+            panel.classList.remove('scale-100');
+            panel.classList.add('scale-95');
+ 
+            // Highlight chosen multiplier card
+            for (let i = 1; i <= 4; i++) {
+                const card = document.getElementById(`multSquare${i}`);
+                if (card) {
+                    if (i === id) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                }
+            }
+ 
+            const multInfo = multiplicities[id];
+ 
+            if (multInfo) {
+                setTimeout(() => {
+                    title.innerText = multInfo.title;
+                    text.innerText = multInfo.text;
+                    panel.classList.remove('scale-95');
+                    panel.classList.add('scale-100');
+                    panel.style.borderColor = 'rgba(229, 193, 88, 0.4)';
+                }, 150);
+            }
+        }
+ 
+        // Load simulator guest profile cards
+        function loadProfile(pId) {
+            const keys = Object.keys(profiles);
+            keys.forEach(k => {
+                const btn = document.getElementById('prof' + k.charAt(0).toUpperCase() + k.slice(1));
+                if (btn) {
+                    if (k === pId) {
+                        btn.className = "px-3 py-1.5 bg-brandGold text-brandDark text-xs font-bold rounded-full border border-brandGold transition duration-300 uppercase tracking-wider";
+                    } else {
+                        btn.className = "px-3 py-1.5 bg-white/5 text-white/60 text-xs font-semibold rounded-full border border-white/10 transition duration-300 uppercase tracking-wider hover:text-white";
+                    }
+                }
+            });
+ 
+            const data = profiles[pId];
+            document.getElementById('simName').innerText = data.name;
+            document.getElementById('simTag').innerText = data.tag;
+            document.getElementById('simDesc').innerText = data.desc;
+            document.getElementById('simQuote').innerText = data.quote;
+            document.getElementById('simKey').innerText = data.key;
+            
+            const avatar = document.getElementById('simAvatar');
+            avatar.innerHTML = `<i class="fa-solid ${data.icon} text-lg"></i>`;
+        }
+ 
+        // Confirm logged rehearsal
+        function logRehearsal() {
+            showNotification("Hyperbola rehearsal logged! Your walk progress has been updated for June 2026.", true);
+        }
+ 
+        // Submit custom feedback directly to list
+        function submitFeedback() {
+            const input = document.getElementById('feedbackInput');
+            if (input.value.trim() === '') {
+                showNotification("Please write your tip or storytelling cue first.", false);
+                return;
+            }
+ 
+            const list = document.getElementById('feedbackList');
+            const div = document.createElement('div');
+            div.className = "bg-white/5 p-3 rounded-lg border border-white/5 text-xs animate-pulse";
+            div.innerHTML = `
+                <div class="flex justify-between items-center mb-1">
+                    <span class="font-semibold text-white">Your Insight (Just Now)</span>
+                    <span class="text-[9px] text-white/40">Just now</span>
+                </div>
+                <p class="text-white/80 font-light leading-relaxed">${input.value}</p>
+            `;
+            list.insertBefore(div, list.firstChild);
+            input.value = '';
+            showNotification("Your styling cue was added to the Hyperbola feed!", true);
+        }
+    </script>
+</body>
+</html>

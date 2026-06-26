@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarovski Sublima – Interactive Design Concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{serif:["Cinzel","serif"],sans:["Montserrat","sans-serif"]}}}}</script>
+    <style>
+        body{background:radial-gradient(circle at 50% 20%,#141e30 0%,#060c16 65%,#000 100%);color:#e2e8f0;font-family:"Montserrat",sans-serif;overflow-x:hidden}
+        .gc{background:rgba(15,25,50,0.70);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(148,163,184,0.14)}
+        .ga{background:rgba(10,20,42,0.80);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(148,163,184,0.32)}
+        @keyframes twinkle{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+        .sp{animation:twinkle 3s infinite ease-in-out}
+        @keyframes pa{0%{transform:scale(.9);opacity:1;box-shadow:0 0 0 0 rgba(148,163,184,0.7)}70%{transform:scale(1.15);opacity:.5;box-shadow:0 0 0 14px rgba(0,0,0,0)}100%{transform:scale(.9);opacity:1;box-shadow:0 0 0 0 rgba(0,0,0,0)}}
+        .hp{animation:pa 2.5s infinite}
+        ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#060c16}::-webkit-scrollbar-thumb{background:#1e293b;border-radius:3px}
+    </style>
+</head>
+<body class="min-h-screen relative pb-12">
+    <div class="sp absolute pointer-events-none z-0 text-lg" style="top:9%;left:6%;color:#94a3b8">✦</div>
+    <div class="sp absolute pointer-events-none z-0 text-2xl" style="top:19%;right:12%;animation-delay:1s;color:#cbd5e1">✦</div>
+    <div class="sp absolute pointer-events-none z-0 text-sm" style="top:44%;left:16%;animation-delay:1.5s;color:#94a3b8">✧</div>
+    <div class="sp absolute pointer-events-none z-0 text-md" style="top:74%;right:7%;animation-delay:2s;color:#cbd5e1">✦</div>
+    <div class="sp absolute pointer-events-none z-0 text-xl" style="top:87%;left:11%;animation-delay:.5s;color:#94a3b8">✧</div>
+
+    <header class="w-full py-6 px-8 flex justify-between items-center relative z-10 gc" style="border-color:rgba(148,163,184,0.14)">
+        <a href="index.html" class="flex items-center space-x-3 text-white/70 hover:text-white transition duration-300">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+            <span class="text-xs uppercase tracking-widest font-semibold">All Collections</span>
+        </a>
+        <div class="text-center">
+            <div class="text-[9px] tracking-[6px] uppercase font-bold" style="color:#94a3b8">Swarovski Universe</div>
+            <div class="font-serif text-xl tracking-[3px] font-medium text-white flex items-center justify-center gap-2">
+                THE WONDER WALK
+                <span class="text-xs px-2.5 py-0.5 rounded-full font-sans tracking-wide" style="background:rgba(148,163,184,0.08);color:#94a3b8;border:1px solid rgba(148,163,184,0.22)">Sublima Collection</span>
+            </div>
+        </div>
+        <span class="text-[10px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-full" style="color:#94a3b8;background:rgba(148,163,184,0.08);border:1px solid rgba(148,163,184,0.22)">
+            <i class="fa-solid fa-water mr-1 animate-pulse"></i> Campaign June 2026
+        </span>
+    </header>
+
+    <div class="max-w-6xl mx-auto mt-8 px-4 flex justify-center relative z-10">
+        <div class="p-1.5 rounded-full flex space-x-1 shadow-2xl gc">
+            <button id="btnClient" onclick="toggleMode('client')" class="px-6 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 text-white shadow-lg" style="background:linear-gradient(to right,#334155,#64748b)">
+                <i class="fa-solid fa-eye mr-2"></i>Client Mode (Experience)
+            </button>
+            <button id="btnAdvisor" onclick="toggleMode('advisor')" class="px-6 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 text-white/60 hover:text-white">
+                <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Advisor Mode (Training)
+            </button>
+        </div>
+    </div>
+
+    <main class="max-w-6xl mx-auto mt-10 px-4 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+            <div class="lg:col-span-7 flex flex-col">
+                <div class="mb-6">
+                    <div class="text-xs uppercase tracking-[6px] font-bold mb-2 flex items-center gap-1.5" style="color:#94a3b8">
+                        <i class="fa-solid fa-sparkles"></i> Designed by Creative Director Giovanna Engelbert
+                    </div>
+                    <h1 class="font-serif text-4xl lg:text-5xl text-white font-light tracking-wide leading-tight">
+                        Sublima
+                        <span class="font-sans font-light text-xl block mt-1" style="color:#cbd5e1">Fluid Organic Shapes & Liquid Brilliance</span>
+                    </h1>
+                    <p class="text-sm mt-3 font-light max-w-xl leading-relaxed" style="color:rgba(203,213,225,0.65)">Sublima captures the raw, organic movement of nature — featuring fluid, wave-like silhouettes that appear to melt across the skin, adorned with shimmering pavé crystal surfaces that mimic the rhythmic pulse of water.</p>
+                </div>
+
+                <div class="relative w-full aspect-[3/4] max-h-[640px] rounded-2xl overflow-hidden shadow-2xl gc flex items-center justify-center">
+                    <img id="mainVisual" src="data:image/avif;base64,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" alt="Swarovski Sublima Cocktail Ring – Round Cut, White, Rhodium Plated"
+                         class="w-full h-full opacity-90 hover:opacity-100 transition duration-500"
+                         style="object-fit:contain;background:#060c16"
+                         onerror="handleImageError(this)">
+                    <div id="imgErr" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 text-center rounded-2xl z-20 gc">
+                        <i class="fa-solid fa-water text-5xl mb-4 animate-pulse" style="color:#94a3b8"></i>
+                        <h4 class="font-serif text-lg text-white mb-2">Image Loading</h4>
+                        <button onclick="document.getElementById('fileInput').click()" class="px-5 py-2.5 text-white font-bold text-[10px] uppercase tracking-wider rounded-lg hover:scale-105 transition" style="background:linear-gradient(to right,#334155,#64748b)"><i class="fa-solid fa-upload mr-2"></i>Select Local File</button>
+                    </div>
+                    <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="(function(e){const f=e.target.files[0];if(f){const r=new FileReader();r.onload=ev=>{document.getElementById('mainVisual').src=ev.target.result;document.getElementById('imgErr').classList.add('hidden');showToast('Image mounted!',true)};r.readAsDataURL(f)}})(event)">
+                    <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(6,12,22,0.80) 0%,transparent 50%,rgba(6,12,22,0.30) 100%)"></div>
+                    <div class="absolute inset-3 rounded-lg pointer-events-none" style="border:1px solid rgba(148,163,184,0.18)"></div>
+
+                    <div class="absolute group" style="top:21%;left:37%">
+                        <button onclick="showHotspot(1)" class="w-8 h-8 rounded-full text-white flex items-center justify-center font-bold text-xs border border-white/40 hp hover:scale-110 transition" style="background:#64748b">1</button>
+                        <span class="absolute left-10 top-1/2 -translate-y-1/2 px-3 py-1 rounded text-[10px] tracking-widest uppercase font-semibold opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap gc" style="color:#94a3b8">Pavé Wave Surface</span>
+                    </div>
+                    <div class="absolute group" style="top:49%;right:23%">
+                        <button onclick="showHotspot(2)" class="w-8 h-8 rounded-full text-white flex items-center justify-center font-bold text-xs border border-white/40 hp hover:scale-110 transition" style="background:#64748b">2</button>
+                        <span class="absolute right-10 top-1/2 -translate-y-1/2 px-3 py-1 rounded text-[10px] tracking-widest uppercase font-semibold opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap gc" style="color:#94a3b8">Round-Cut Center</span>
+                    </div>
+                    <div class="absolute group" style="bottom:23%;left:27%">
+                        <button onclick="showHotspot(3)" class="w-8 h-8 rounded-full text-white flex items-center justify-center font-bold text-xs border border-white/40 hp hover:scale-110 transition" style="background:#64748b">3</button>
+                        <span class="absolute left-10 top-1/2 -translate-y-1/2 px-3 py-1 rounded text-[10px] tracking-widest uppercase font-semibold opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap gc" style="color:#94a3b8">Rhodium Plating</span>
+                    </div>
+
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full flex items-center space-x-2 shadow-xl gc">
+                        <span class="inline-block w-2 h-2 rounded-full animate-ping" style="background:#94a3b8"></span>
+                        <span class="text-xs font-semibold text-white/80">Click numbers to explore Sublima's design secrets</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 flex flex-col">
+                <div id="clientContent" class="gc p-8 rounded-2xl h-full flex flex-col justify-between transition-all duration-500">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 mb-6" style="border-bottom:1px solid rgba(148,163,184,0.14)">
+                            <span class="font-serif text-lg tracking-wide" style="color:#94a3b8">Style Manifesto: Liquid Elegance</span>
+                            <span class="text-[10px] font-bold text-white/40 tracking-widest uppercase px-2 py-0.5 rounded" style="background:rgba(148,163,184,0.08)">Design Ethos</span>
+                        </div>
+                        <div class="space-y-5">
+                            <div>
+                                <h3 class="font-serif text-base text-white font-medium mb-2">The Fluidity of Waves</h3>
+                                <p class="text-white/70 text-xs font-light leading-relaxed">Sublima mimics the rhythmic pulse of water with undulating metalwork that follows the natural curves of the body. Pavé-set crystals nestle within each wave, creating an unbroken river of light that shifts with every movement.</p>
+                            </div>
+                            <div class="pt-4" style="border-top:1px solid rgba(148,163,184,0.14)">
+                                <h3 class="font-serif text-base text-white font-medium mb-2">Organic Symmetry</h3>
+                                <p class="text-white/70 text-xs font-light leading-relaxed">Designed without rigid edges, Sublima creates a sculptural, high-shine silhouette that feels both modern and deeply natural. The round-cut center stone acts as the tide's focal point — a moment of clarity within flowing brilliance.</p>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background:rgba(148,163,184,0.08);border:1px solid rgba(148,163,184,0.22)">
+                                <span class="text-xs uppercase tracking-wider font-semibold block mb-1" style="color:#94a3b8">
+                                    <i class="fa-solid fa-water mr-2"></i>Signature Sublima Traits
+                                </span>
+                                <span class="text-xs text-white/80 font-light leading-relaxed block">Undulating wave-like silhouettes, micro-pavé crystal finish, round-cut center stone, rhodium-plated fluid metalwork, and an organic sculptural form that conforms beautifully to every curve.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 flex items-center justify-between" style="border-top:1px solid rgba(148,163,184,0.14)">
+                        <div>
+                            <span class="text-[10px] uppercase text-white/40 block">Collection</span>
+                            <span class="text-sm font-serif text-white">Sublima · Rhodium Plated</span>
+                        </div>
+                        <span class="px-4 py-2 text-xs uppercase tracking-widest rounded-md" style="border:1px solid rgba(148,163,184,0.22);color:#94a3b8">Organic</span>
+                    </div>
+                </div>
+
+                <div id="advisorContent" class="hidden ga p-8 rounded-2xl h-full flex flex-col justify-between transition-all duration-500">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 mb-6" style="border-bottom:1px solid rgba(148,163,184,0.32)">
+                            <span class="font-serif text-lg text-white flex items-center">
+                                <i class="fa-solid fa-graduation-cap mr-2.5" style="color:#94a3b8"></i>Wonder Walk Training Guide
+                            </span>
+                            <span class="text-[10px] font-bold tracking-widest uppercase px-2 py-0.5 rounded" style="color:#94a3b8;background:rgba(148,163,184,0.08);border:1px solid rgba(148,163,184,0.22)">Staff Training</span>
+                        </div>
+                        <div id="hsPanel" class="p-4 rounded-xl mb-6 gc">
+                            <div class="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider mb-2" style="color:#94a3b8">
+                                <i class="fa-solid fa-star animate-pulse"></i>
+                                <span id="hsTitle">Select a hotspot on the visual (1, 2, or 3)</span>
+                            </div>
+                            <p id="hsText" class="text-xs text-white/70 font-light leading-relaxed">Expert insights about Sublima will load here to fuel your store tour script.</p>
+                        </div>
+                        <div class="space-y-5">
+                            <div>
+                                <h3 class="font-serif text-sm font-medium mb-1.5" style="color:#94a3b8"><i class="fa-solid fa-comment-dots mr-2"></i>Storytelling Cue: Liquid Motion</h3>
+                                <p class="text-white/80 text-xs font-light leading-relaxed"><em>"Invite your guest to trace the flow of the metal. Sublima is not just jewelry — it is a fluid extension of their own natural movement. Ask them to flex their wrist while wearing the ring and watch how the wave responds."</em></p>
+                            </div>
+                            <div class="pt-4" style="border-top:1px solid rgba(148,163,184,0.32)">
+                                <h3 class="font-serif text-sm font-medium mb-1.5" style="color:#94a3b8"><i class="fa-solid fa-user-group mr-2"></i>Rehearsal Prompt: The Curve Test</h3>
+                                <ul class="space-y-2 text-xs font-light text-white/80">
+                                    <li class="flex items-start"><i class="fa-solid fa-chevron-right mr-2 mt-1" style="color:#94a3b8"></i><span><strong>How to present:</strong> Show how the piece hugs a curved surface. Place the ring on the back of your hand and demonstrate how the metalwork follows the natural arc of the skin.</span></li>
+                                    <li class="flex items-start"><i class="fa-solid fa-chevron-right mr-2 mt-1" style="color:#94a3b8"></i><span><strong>Immersive Question:</strong> <em>Do you see how it appears to melt into the skin rather than sitting on top of it? That is the Sublima effect — nature, captured in crystal.</em></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 flex items-center justify-between text-xs" style="border-top:1px solid rgba(148,163,184,0.32)">
+                        <span class="text-white/60">Practiced your Sublima walkthrough today?</span>
+                        <button onclick="logRehearsal()" class="px-3.5 py-1.5 text-white font-bold tracking-wider uppercase rounded text-[10px] transition shadow-md" style="background:linear-gradient(to right,#334155,#64748b)">
+                            <i class="fa-solid fa-check mr-1.5"></i>Log Rehearsal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="mt-12 gc p-8 rounded-2xl">
+            <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-6" style="border-bottom:1px solid rgba(148,163,184,0.14)">
+                <div>
+                    <h2 class="font-serif text-2xl text-white font-light tracking-wide">Customer Persona Simulator (Sublima)</h2>
+                    <p class="text-xs text-white/40 mt-1">Select a customer profile to reveal the optimal storytelling scenario.</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex flex-wrap gap-2"><button onclick="loadProfile('organic')" id="profOrganic" class="px-3 py-1.5 text-xs font-bold rounded-full transition duration-300 uppercase tracking-wider" style="border:1px solid rgba(148,163,184,0.22);color:#94a3b8;background:linear-gradient(to right,#334155,#64748b);color:#fff">The Organic Enthusiast</button><button onclick="loadProfile('stylist')" id="profStylist" class="px-3 py-1.5 text-xs font-bold rounded-full transition duration-300 uppercase tracking-wider" style="border:1px solid rgba(148,163,184,0.22);color:#94a3b8;">The Fluid Stylist</button><button onclick="loadProfile('evening')" id="profEvening" class="px-3 py-1.5 text-xs font-bold rounded-full transition duration-300 uppercase tracking-wider" style="border:1px solid rgba(148,163,184,0.22);color:#94a3b8;">The Evening Glamourist</button></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 rounded-xl" style="background:rgba(3,8,20,0.80);border:1px solid rgba(148,163,184,0.22)">
+                <div class="md:col-span-4 pr-6" style="border-right:1px solid rgba(148,163,184,0.22)">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div id="simAvatar" class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(148,163,184,0.08);border:1px solid rgba(148,163,184,0.22);color:#94a3b8">
+                            <i class="fa-water text-lg"></i>
+                        </div>
+                        <div>
+                            <span id="simName" class="text-sm font-semibold text-white block">The Organic Enthusiast</span>
+                            <span id="simTag" class="text-[10px] uppercase tracking-wider" style="color:#94a3b8">Loves Fluid Natural Forms</span>
+                        </div>
+                    </div>
+                    <p id="simDesc" class="text-xs text-white/60 font-light leading-relaxed">This guest is drawn to the nature-inspired, flowing design of Sublima. They look for jewelry that feels harmonious with their body's movement — not placed upon it.</p>
+                </div>
+                <div class="md:col-span-8 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] tracking-widest uppercase font-semibold block mb-2" style="color:#94a3b8"><i class="fa-solid fa-comments mr-1.5"></i>Recommended Opening Icebreaker</span>
+                        <blockquote id="simQuote" class="text-sm font-serif italic text-white/95 pl-4 py-1 leading-relaxed" style="border-left:2px solid #94a3b8">"Sublima is all about fluid motion. These pieces mirror the grace of natural waves, making them feel like a second skin rather than an accessory."</blockquote>
+                    </div>
+                    <div class="mt-4 pt-4" style="border-top:1px solid rgba(148,163,184,0.22)">
+                        <span class="text-white/40 block text-[10px] uppercase">Crucial Selling Angle:</span>
+                        <span id="simKey" class="text-white/80 text-xs">Organic harmony, fluid sculptural design, and a natural aesthetic that feels like an extension of the body.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-1 gc p-6 rounded-xl flex flex-col justify-between">
+                <div>
+                    <h3 class="font-serif text-base mb-2" style="color:#94a3b8"><i class="fa-solid fa-paper-plane mr-2"></i>Your Rehearsal Input</h3>
+                    <p class="text-xs text-white/50 font-light mb-4 leading-relaxed">Share your best storytelling moment when highlighting the liquid aspect during a Sublima walk.</p>
+                </div>
+                <div class="space-y-3">
+                    <textarea id="feedbackInput" placeholder="What storytelling cue worked best during your walk today?" class="w-full h-24 rounded-lg p-3 text-xs text-white focus:outline-none transition" style="background:rgba(3,8,20,0.80);border:1px solid rgba(148,163,184,0.22)"></textarea>
+                    <button onclick="submitFeedback()" class="w-full py-2 text-xs tracking-wider uppercase rounded-lg transition duration-300" style="background:rgba(148,163,184,0.08);color:#94a3b8;border:1px solid rgba(148,163,184,0.22)">Post Tip</button>
+                </div>
+            </div>
+            <div class="md:col-span-2 gc p-6 rounded-xl">
+                <div class="flex items-center justify-between pb-2 mb-4" style="border-bottom:1px solid rgba(148,163,184,0.14)">
+                    <h3 class="font-serif text-base text-white"><i class="fa-solid fa-comments mr-2"></i>Recent Team Insights</h3>
+                    <span class="text-[9px] px-2 py-0.5 rounded uppercase font-semibold" style="background:rgba(148,163,184,0.08);color:#94a3b8;border:1px solid rgba(148,163,184,0.22)">Sublima Feed</span>
+                </div>
+                <div id="feedbackList" class="space-y-3 max-h-[220px] overflow-y-auto pr-2">
+                    <div class="bg-white/5 p-3 rounded-lg text-xs" style="border:1px solid rgba(148,163,184,0.22)">
+                        <div class="flex justify-between items-center mb-1"><span class="font-semibold text-white">Elena R. (Brand Advocate)</span><span class="text-[9px] text-white/40">2 hours ago</span></div>
+                        <p class="text-white/70 font-light leading-relaxed">Clients love the "liquid motion" language! Asking them to flex their wrist after trying the ring makes the wave effect immediately obvious — it consistently converts hesitation into excitement.</p>
+                    </div>
+                    <div class="bg-white/5 p-3 rounded-lg text-xs" style="border:1px solid rgba(148,163,184,0.22)">
+                        <div class="flex justify-between items-center mb-1"><span class="font-semibold text-white">Marcus T. (Sales Consultant)</span><span class="text-[9px] text-white/40">Yesterday</span></div>
+                        <p class="text-white/70 font-light leading-relaxed">For evening guests, I focus on how the pavé catches warm spotlight differently. Bringing the ring near the store beam creates an instant wow moment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="max-w-6xl mx-auto mt-12 pt-8 text-center text-white/30 text-[10px] uppercase tracking-widest font-semibold relative z-10" style="border-top:1px solid rgba(148,163,184,0.14)">
+        © 2026 Swarovski Retail Project | Sublima Collection Presentation
+    </footer>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-500 flex items-center space-x-3 px-5 py-3.5 rounded-xl shadow-2xl max-w-sm ga">
+        <span id="toastIcon" class="text-lg" style="color:#94a3b8"><i class="fa-solid fa-circle-check"></i></span>
+        <span id="toastMsg" class="text-xs font-light tracking-wide text-white"></span>
+    </div>
+
+    <script>
+        const hotspots = {    1: {title:"Pavé Crystal Wave Architecture",text:"Each Sublima piece features a continuous micro-pavé surface set within organically sculpted wave-like metalwork. The crystals follow the curvature of the wave itself, ensuring seamless light dispersion at every angle. This organic setting technique is far more complex than standard pavé and is unique to Sublima's identity within the Swarovski range."},
+    2: {title:"Round-Cut Crystal Focal Point",text:"The round-cut center stone serves as the eye of the wave — the moment where movement stills and clarity reigns. The round cut is specifically chosen for its ability to refract light evenly in all directions, creating a soft, continuous glow that anchors the organic design. Guide guests to observe how the center stone appears to glow from within rather than simply reflecting surface light."},
+    3: {title:"Rhodium-Plated Fluid Setting",text:"The rhodium plating on Sublima serves a dual purpose. Functionally, it protects the delicate wave-form metalwork from tarnishing. Aesthetically, the bright white-silver of rhodium amplifies the surrounding pavé crystals, making each wave appear to crest with light. Highlight that rhodium is rarer and brighter than gold — an indicator of Sublima's premium positioning."}};
+        const profiles  = {    organic: {name:"The Organic Enthusiast",tag:"Loves Fluid Natural Forms",desc:"This guest is drawn to the nature-inspired, flowing design of Sublima. They look for jewelry that feels harmonious with their body's movement — not placed upon it.",quote:"Sublima is all about fluid motion. These pieces mirror the grace of natural waves, making them feel like a second skin rather than an accessory.",key:"Organic harmony, fluid sculptural design, and a natural aesthetic that feels like an extension of the body.",icon:"fa-water"},
+    stylist: {name:"The Fluid Stylist",tag:"Loves Modern Versatility",desc:"This guest values jewelry that adapts to their outfit. They appreciate how Sublima's wave-like shapes create dynamic, ever-changing visuals depending on the light.",quote:"Sublima is perfect for styling versatility. Its fluid silhouette adapts to every outfit, bringing a dynamic, high-shine edge that geometric pieces simply cannot match.",key:"Dynamic multi-angle brilliance, versatile styling potential, and a sculptural modernity that elevates both casual and formal looks.",icon:"fa-swatchbook"},
+    evening: {name:"The Evening Glamourist",tag:"Loves Fluid Luxury",desc:"This guest seeks a statement piece that elevates an evening look. The fluid pavé crystal surface makes Sublima a sophisticated choice for high-shine occasions.",quote:"Sublima is the ultimate statement in fluid luxury. The way the crystal surface catches light as you move is truly mesmerizing — there is nothing like it in the room.",key:"Sophisticated movement-activated shine, fluid luxury positioning, and high-impact evening appeal through organic sculptural design.",icon:"fa-moon"}};
+        const pKeys     = ['organic','stylist','evening'];
+
+        function handleImageError(img){img.src='https://placehold.co/900x1200/111/fff?text=Sublima';document.getElementById('imgErr').classList.remove('hidden');}
+
+        function toggleMode(mode){
+            const bc=document.getElementById('btnClient'),ba=document.getElementById('btnAdvisor'),cc=document.getElementById('clientContent'),ac=document.getElementById('advisorContent');
+            const on='background:linear-gradient(to right,#334155,#64748b);color:#fff';
+            if(mode==='client'){bc.setAttribute('style',on);ba.removeAttribute('style');cc.classList.remove('hidden');ac.classList.add('hidden')}
+            else{ba.setAttribute('style',on);bc.removeAttribute('style');ac.classList.remove('hidden');cc.classList.add('hidden')}
+        }
+
+        function showToast(msg,ok){
+            const t=document.getElementById('toast');
+            document.getElementById('toastMsg').innerText=msg;
+            document.getElementById('toastIcon').innerHTML=ok?'<i class="fa-solid fa-circle-check"></i>':'<i class="fa-solid fa-triangle-exclamation" style="color:#f43f5e"></i>';
+            t.classList.remove('translate-y-10','opacity-0','pointer-events-none');t.classList.add('translate-y-0','opacity-100');
+            setTimeout(()=>{t.classList.add('translate-y-10','opacity-0','pointer-events-none');t.classList.remove('translate-y-0','opacity-100')},4500);
+        }
+
+        function showHotspot(id){
+            toggleMode('advisor');
+            const p=document.getElementById('hsPanel');
+            p.classList.add('scale-95');
+            setTimeout(()=>{document.getElementById('hsTitle').innerText=hotspots[id].title;document.getElementById('hsText').innerText=hotspots[id].text;p.classList.remove('scale-95')},150);
+        }
+
+        function loadProfile(pId){
+            pKeys.forEach(k=>{
+                const btn=document.getElementById('prof'+k.charAt(0).toUpperCase()+k.slice(1));
+                if(btn) btn.setAttribute('style',k===pId?'background:linear-gradient(to right,#334155,#64748b);color:#fff;border:1px solid rgba(148,163,184,0.22)':'border:1px solid rgba(148,163,184,0.22);color:#94a3b8');
+            });
+            const d=profiles[pId];
+            document.getElementById('simName').innerText=d.name;
+            document.getElementById('simTag').innerText=d.tag;
+            document.getElementById('simDesc').innerText=d.desc;
+            document.getElementById('simQuote').innerText=d.quote;
+            document.getElementById('simKey').innerText=d.key;
+            document.getElementById('simAvatar').innerHTML='<i class="fa-solid '+d.icon+' text-lg"></i>';
+        }
+
+        function logRehearsal(){showToast('Excellent! Your Sublima rehearsal has been logged. Ready to turn every guest into a wave of brilliance!',true);}
+
+        function submitFeedback(){
+            const inp=document.getElementById('feedbackInput');
+            if(!inp.value.trim()){showToast('Please type an insight first.',false);return;}
+            const list=document.getElementById('feedbackList');
+            const div=document.createElement('div');
+            div.className='bg-white/5 p-3 rounded-lg text-xs';
+            div.style='border:1px solid rgba(148,163,184,0.22)';
+            div.innerHTML='<div class="flex justify-between items-center mb-1"><span class="font-semibold" style="color:#94a3b8">Your Tip (Just Now)</span><span class="text-[9px] text-white/40">Just now</span></div><p class="text-white/80 font-light leading-relaxed">'+inp.value+'</p>';
+            list.insertBefore(div,list.firstChild);inp.value='';
+            showToast('Insight posted to the Sublima team feed!',true);
+        }
+    </script>
+</body>
+</html>
